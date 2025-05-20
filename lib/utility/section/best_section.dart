@@ -1,44 +1,39 @@
+import 'package:booknest/bookslistsearch/allBooks.dart';
+import 'package:booknest/pages/book_details.dart';
 import 'package:booknest/utility/bookitem_card.dart';
 import 'package:flutter/material.dart';
 
 class BestSection extends StatelessWidget {
   const BestSection({super.key});
 
+  void pushBookDetails(
+    BuildContext context,
+    String title,
+    String imagePath,
+    int price,
+    String author,
+    String description,
+  ) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder:
+            (context) => BookDetailsPage(
+              title: title,
+              imagePath: imagePath,
+              price: price,
+              titleText: "Best Selling\n",
+              capText: "Find Your Next Great Read Among Our Best Selling.",
+              author: author,
+              description: description,
+            ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // Data for all your cards
-    final bestSellers = [
-      {
-        'title': 'Anime',
-        'image': 'assets/images/Demon_Slayer.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Movie',
-        'image': 'assets/images/Demon_Slayer.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Movie',
-        'image': 'assets/images/harrypotter.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Game',
-        'image': 'assets/images/the_witcher.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Web-Series',
-        'image': 'assets/images/Demon_Slayer.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Web-Series',
-        'image': 'assets/images/got.jpg',
-        'price': 'Rs.200',
-      },
-    ];
 
     return Padding(
       padding: const EdgeInsets.only(left: 40.0),
@@ -88,12 +83,6 @@ class BestSection extends StatelessWidget {
                     child: TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/bestsellers');
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const bestSellersPage(),
-                        //   ),
-                        // );
                       },
                       child: Text("Show all"),
                     ),
@@ -112,9 +101,19 @@ class BestSection extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(right: 20.0),
                       child: BookItemCard(
-                        title: item['title']!,
-                        imagePath: item['image']!,
-                        price: item['price']!,
+                        title: item['title']! as String,
+                        imagePath: item['image']! as String,
+                        price: item['price']! as int,
+                        onTap: () {
+                          pushBookDetails(
+                            context,
+                            item['title']! as String,
+                            item['image']! as String,
+                            item['price']! as int,
+                            item['author']! as String,
+                            item['description']! as String,
+                          );
+                        },
                       ),
                     );
                   }).toList(),

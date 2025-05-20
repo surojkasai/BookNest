@@ -33,7 +33,7 @@ class _HomepageState extends State<Homepage> {
     showDialog(
       context: context,
       builder: (context) {
-        return SearchDialogue(search: () => {});
+        return SearchDialogue();
       },
     );
   }
@@ -97,7 +97,7 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
-  void onChanged() {}
+  void userCart() {}
 
   @override
   Widget build(BuildContext context) {
@@ -238,7 +238,9 @@ class _HomepageState extends State<Homepage> {
 
             //for cart
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/usercart');
+              },
               icon: Icon(Icons.shopping_cart),
               padding: EdgeInsets.symmetric(
                 horizontal: 40.0,

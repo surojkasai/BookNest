@@ -1,14 +1,15 @@
-import 'package:booknest/pages/Usersettingspage.dart';
 import 'package:booknest/pages/homepage.dart';
 import 'package:booknest/pages/best_sellers_page.dart'; // import your new page
 import 'package:booknest/pages/mainbody.dart';
 import 'package:booknest/pages/new_arrivals_page.dart';
-import 'package:booknest/utility/google_auth_service.dart';
-import 'package:booknest/utility/login.dart';
+import 'package:booknest/pages/user_cart.dart';
+import 'package:booknest/provider/cart_provider.dart';
 import 'package:booknest/utility/section/footer_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:khalti_flutter/khalti_flutter.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,18 @@ void main() async {
       projectId: "booknest-54526",
     ),
   );
-  runApp(MyApp());
+  runApp(
+    KhaltiScope(
+      publicKey:
+          'test_public_key_dc74c7f2383341e78c1fbd8e2a4a3f2d', // Khalti public key
+      builder: (context, navigatorKey) {
+        return MultiProvider(
+          providers: [ChangeNotifierProvider(create: (_) => CartProvider())],
+          child: MyApp(),
+        );
+      },
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -30,7 +42,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isDarkMode = false;
+  bool _isDarkMode = true;
   Future getUserInfo() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -78,6 +90,11 @@ class _MyAppState extends State<MyApp> {
             (context) => NewArrivalsPage(
               onThemeChanged: toggleTheme,
               footer: FooterSection(),
+            ),
+        '/usercart':
+            (context) => ShoppingCartPage(
+              //onThemeChanged: toggleTheme,
+              //footer: FooterSection(),
             ),
         //'/user-settings': (context) => Usersettingspage(),
         //'/login': (context) => Login(onThemeChanged: toggleTheme),

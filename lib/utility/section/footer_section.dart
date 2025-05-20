@@ -53,58 +53,58 @@ class FooterSection extends StatelessWidget {
               ),
               Spacer(),
               // Promo box
-              Container(
-                width: 300,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey[900],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                        children: [
-                          TextSpan(text: 'Signup and '),
-                          TextSpan(
-                            text: 'Unlock 10% OFF',
-                            style: TextStyle(color: Colors.redAccent),
-                          ),
-                          TextSpan(text: '\nOn your first purchase!'),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Opt in to our newsletter on BooksMandala for exclusive deals, updates, and more!',
-                      style: TextStyle(color: Colors.grey[400], fontSize: 12),
-                    ),
-                    SizedBox(height: 15),
-                    Row(
-                      children: [
-                        Container(
-                          color: Colors.amber[100],
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 6,
-                            horizontal: 10,
-                          ),
-                          child: Text(
-                            'CODE',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10),
-                        ElevatedButton(onPressed: () {}, child: Text("SIGNUP")),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   width: 300,
+              //   padding: const EdgeInsets.all(20),
+              //   decoration: BoxDecoration(
+              //     color: Colors.grey[900],
+              //     borderRadius: BorderRadius.circular(10),
+              //   ),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       RichText(
+              //         text: TextSpan(
+              //           style: TextStyle(color: Colors.white, fontSize: 16),
+              //           children: [
+              //             TextSpan(text: 'Signup and '),
+              //             TextSpan(
+              //               text: 'Unlock 10% OFF',
+              //               style: TextStyle(color: Colors.redAccent),
+              //             ),
+              //             TextSpan(text: '\nOn your first purchase!'),
+              //           ],
+              //         ),
+              //       ),
+              //       SizedBox(height: 10),
+              //       Text(
+              //         'Opt in to our newsletter on BooksMandala for exclusive deals, updates, and more!',
+              //         style: TextStyle(color: Colors.grey[400], fontSize: 12),
+              //       ),
+              //       SizedBox(height: 15),
+              //       Row(
+              //         children: [
+              //           Container(
+              //             color: Colors.amber[100],
+              //             padding: const EdgeInsets.symmetric(
+              //               vertical: 6,
+              //               horizontal: 10,
+              //             ),
+              //             child: Text(
+              //               'CODE',
+              //               style: TextStyle(
+              //                 color: Colors.black,
+              //                 fontWeight: FontWeight.bold,
+              //               ),
+              //             ),
+              //           ),
+              //           SizedBox(width: 10),
+              //           ElevatedButton(onPressed: () {}, child: Text("SIGNUP")),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
 

@@ -1,7 +1,7 @@
+import 'package:booknest/bookslistsearch/allBooks.dart';
+import 'package:booknest/newarrivallist/horizontallist.dart';
 import 'package:booknest/pages/homepage.dart';
-import 'package:booknest/utility/bookitem_card.dart';
 import 'package:booknest/utility/section/best_section.dart';
-import 'package:booknest/utility/section/footer_section.dart';
 import 'package:flutter/material.dart';
 
 class bestSellersPage extends StatelessWidget {
@@ -15,38 +15,6 @@ class bestSellersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bestSellers = [
-      {
-        'title': 'Anime',
-        'image': 'assets/images/Demon_Slayer.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Movie',
-        'image': 'assets/images/Demon_Slayer.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Movie',
-        'image': 'assets/images/harrypotter.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Game',
-        'image': 'assets/images/the_witcher.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Web-Series',
-        'image': 'assets/images/Demon_Slayer.jpg',
-        'price': 'Rs.200',
-      },
-      {
-        'title': 'Web-Series',
-        'image': 'assets/images/got.jpg',
-        'price': 'Rs.200',
-      },
-    ];
     return Homepage(
       onThemeChanged: onThemeChanged,
       body: SingleChildScrollView(
@@ -54,32 +22,12 @@ class bestSellersPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //calling the bestsection to the next page
-            BestSection(), // ✅ just add it here!
+            BestSection(),
             SizedBox(height: 20),
 
-            // Horizontal list of book items
-            Padding(
-              padding: EdgeInsets.only(left: 130.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children:
-                      bestSellers.map((item) {
-                        return Padding(
-                          padding: EdgeInsets.only(right: 20.0),
-                          child: BookItemCard(
-                            title: item['title']!,
-                            imagePath: item['image']!,
-                            price: item['price']!,
-                          ),
-                        );
-                      }).toList(),
-                ),
-              ),
-            ),
-
             SizedBox(height: 30),
-            Padding(
+
+            /*Padding(
               padding: const EdgeInsets.only(left: 130.0),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -89,39 +37,47 @@ class bestSellersPage extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.only(right: 20.0),
                           child: BookItemCard(
-                            title: item['title']!,
-                            imagePath: item['image']!,
-                            price: item['price']!,
+                            title: item['title']! as String,
+                            imagePath: item['image']! as String,
+                            price: item['price']! as int,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => BookDetailsPage(
+                                        titleText: "Best Selling\n",
+                                        capText:
+                                            'Find Your Next Great Read Among Our Best Selling.',
+                                        title: item['title']! as String,
+                                        imagePath: item['image']! as String,
+                                        price: item['price']! as int,
+                                        author: 'James',
+                                        // onThemeChanged: onThemeChanged,
+                                        // footer: footer,
+                                      ),
+                                ),
+                              );
+                            },
                           ),
                         );
                       }).toList(),
                 ),
               ),
             ),
-
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.only(left: 130.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children:
-                      bestSellers.map((item) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: BookItemCard(
-                            title: item['title']!,
-                            imagePath: item['image']!,
-                            price: item['price']!,
-                          ),
-                        );
-                      }).toList(),
-                ),
-              ),
+*/
+            HorizontalBookList(
+              //sectionTitle: "Editor's Picks",
+              books: bestSellers, // <-- A different list
             ),
-
             // Now add your section(s) below
             //Section(), // You can repeat as needed
+            SizedBox(height: 30),
+            HorizontalBookList(
+              //sectionTitle: "Editor's Picks",
+              books: editorsPickList, // <-- A different list
+            ),
+
             SizedBox(height: 30),
           ],
         ),
