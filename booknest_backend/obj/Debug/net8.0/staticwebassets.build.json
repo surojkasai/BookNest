@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "5xT5MMZhJGP+LzDVYv7OLdUKuC4+IiY79CSK1gWE7+E=",
+  "Source": "booknest_backend",
+  "BasePath": "_content/booknest_backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

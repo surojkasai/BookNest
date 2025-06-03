@@ -3,7 +3,6 @@ import 'package:booknest/utility/featured/body_carousel.dart';
 import 'package:booknest/utility/featured/body_item_loop.dart';
 import 'package:booknest/utility/section/authors_section.dart';
 import 'package:booknest/utility/section/best_section.dart';
-import 'package:booknest/utility/section/footer_section.dart';
 import 'package:booknest/utility/section/newarrivals_section.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_listview/infinite_listview.dart';
@@ -34,6 +33,21 @@ class Mainbody extends StatelessWidget {
                     return CategoryCard(
                       title: category['title']!,
                       image: category['image']!,
+                      onTap: () {
+                        switch (category['title']) {
+                          case 'Cinematic':
+                            Navigator.pushNamed(context, '/cinematic');
+                            break;
+                          case 'Best selling':
+                            Navigator.pushNamed(context, '/bestsellers');
+                            break;
+                          case 'Latest Arrivals':
+                            Navigator.pushNamed(context, '/newarrivals');
+                            break;
+                          default:
+                            break;
+                        }
+                      },
                     );
                   },
                 ),
@@ -1039,7 +1053,7 @@ class Mainbody extends StatelessWidget {
 
           //author section
           Container(
-            color: Colors.black,
+            //color: Colors.black,
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1047,7 +1061,7 @@ class Mainbody extends StatelessWidget {
                 Text(
                   'Bestselling Authors',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -1063,46 +1077,55 @@ class Mainbody extends StatelessWidget {
                   child: Row(
                     children: [
                       AuthorsSection(
+                        onTap: () {},
                         name: 'Buddhisagar',
                         imagePath: 'assets/authors/buddhisagar.jpg',
                       ),
                       const SizedBox(width: 20),
                       AuthorsSection(
+                        onTap: () {},
                         name: 'Fyodor Dostoyevsky',
                         imagePath: 'assets/authors/fyodor.jpg',
                       ),
                       const SizedBox(width: 20),
                       AuthorsSection(
+                        onTap: () {},
                         name: 'Robert Greene',
                         imagePath: 'assets/authors/greene.jpg',
                       ),
                       const SizedBox(width: 20),
                       AuthorsSection(
+                        onTap: () {},
                         name: 'Sage Veda Vyasa',
                         imagePath: 'assets/authors/sage.jpg',
                       ),
                       const SizedBox(width: 20),
                       AuthorsSection(
+                        onTap: () {},
                         name: 'A.C. Bhaktivedanta..',
                         imagePath: 'assets/authors/acb.jpg',
                       ),
                       const SizedBox(width: 20),
                       AuthorsSection(
+                        onTap: () {},
                         name: 'Colleen Hoover',
                         imagePath: 'assets/authors/colleen.jpg',
                       ),
                       const SizedBox(width: 20),
                       AuthorsSection(
+                        onTap: () {},
                         name: 'Morgan Housel',
                         imagePath: 'assets/authors/morgan.jpg',
                       ),
                       const SizedBox(width: 20),
                       AuthorsSection(
+                        onTap: () {},
                         name: 'Haruki Murakami',
                         imagePath: 'assets/authors/haruki.jpg',
                       ),
                       const SizedBox(width: 20),
                       AuthorsSection(
+                        onTap: () {},
                         name: 'Napoleon Hill',
                         imagePath: 'assets/authors/napoleon.jpg',
                       ),

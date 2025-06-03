@@ -1,20 +1,20 @@
 import 'package:booknest/pages/Usersettingspage.dart';
-import 'package:booknest/utility/login.dart';
-import 'package:booknest/utility/search/search_box.dart';
+import 'package:booknest/pages/login.dart';
+import 'package:booknest/utility/featured/search/search_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart'
     show GoogleSignIn, GoogleSignInAccount;
 
 class Homepage extends StatefulWidget {
-  final VoidCallback onThemeChanged;
+  final VoidCallback? onThemeChanged;
 
   final Widget body;
   final Widget footer;
 
   Homepage({
     super.key,
-    required this.onThemeChanged,
+    this.onThemeChanged,
     required this.body,
     required this.footer,
   });
@@ -26,7 +26,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   //final _textEditingController = TextEditingController();
 
-  String selectedCategory = "Books";
+  String selectedCategory = "Cinematic";
   String? selectedGenre;
 
   void showSearchDialog() {
@@ -126,47 +126,74 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               Padding(padding: EdgeInsets.only(left: 40)),
+              
 
-              DropdownButton<String>(
-                value: selectedGenre,
-                hint: Text("Genre"),
-                icon: Icon(Icons.arrow_drop_down),
-                focusColor: Colors.transparent,
-                //hides the iconr
-                //icon: SizedBox(),
-                underline: SizedBox(),
-                //focusColor: Colors.transparent,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Theme.of(context).textTheme.bodyLarge?.color,
-                ),
-                items:
-                    [
-                      "Genre",
-                      "Manga",
-                      "Manhwa",
-                      "Manhua",
-                      "Fiction and Literature",
-                      "Foreign Languages",
-                      "History, Biography",
-                      "Kids and Teens",
-                      "Learning and Reference",
-                      "Lifestyle and Wellness",
-                      "Miscellaneous",
-                      "Nature ",
-                    ].map((String category) {
-                      return DropdownMenuItem<String>(
-                        value: category == "Genre" ? null : category,
-                        child: Text(category),
-                      );
-                    }).toList(),
+              // DropdownButton<String>(
+              //   value: selectedGenre,
+              //   hint: Text("Genre"),
+              //   icon: Icon(Icons.arrow_drop_down),
+              //   focusColor: Colors.transparent,
+              //   //hides the iconr
+              //   //icon: SizedBox(),
+              //   underline: SizedBox(),
+              //   //focusColor: Colors.transparent,
+              //   style: TextStyle(
+              //     fontSize: 20,
+              //     color: Theme.of(context).textTheme.bodyLarge?.color,
+              //   ),
+              //   items:
+              //       [
+              //         "Genre",
+              //         "Manga",
+              //         "Manhwa",
+              //         "Manhua",
+              //         "Fiction and Literature",
+              //         "Foreign Languages",
+              //         "History, Biography",
+              //         "Kids and Teens",
+              //         "Learning and Reference",
+              //         "Lifestyle and Wellness",
+              //         "Miscellaneous",
+              //         "Nature ",
+              //       ].map((String category) {
+              //         return DropdownMenuItem<String>(
+              //           value: category == "Genre" ? null : category,
+              //           child: Text(category),
+              //         );
+              //       }).toList(),
 
-                onChanged: (newValue) {
-                  setState(() {
-                    selectedGenre = newValue!;
-                  });
-                },
-              ),
+              //   onChanged: (newValue) {
+              //     setState(() {
+              //       selectedGenre = newValue!;
+              //     });
+              //   },
+              // ),
+
+              // DropdownButton<String>(
+              //   value: selectedCategory,
+              //   icon: Icon(Icons.arrow_drop_down),
+              //   underline: SizedBox(),
+              //   focusColor: Colors.transparent,
+              //   style: TextStyle(
+              //     fontSize: 20,
+              //     color: Theme.of(context).textTheme.bodyLarge?.color,
+              //   ),
+              //   items:
+              //       ["Cinematic", "Best Selling", "New Arrivals"].map((
+              //         String category,
+              //       ) {
+              //         return DropdownMenuItem<String>(
+              //           value: category,
+              //           child: Text(category),
+              //         );
+              //       }).toList(),
+              //   onChanged: (newValue) {
+              //     setState(() {
+              //       selectedCategory = newValue!;
+              //     });
+              //   },
+              // ),
+              // SizedBox(width: 50),
               DropdownButton<String>(
                 value: selectedCategory,
                 icon: Icon(Icons.arrow_drop_down),
@@ -177,7 +204,9 @@ class _HomepageState extends State<Homepage> {
                   color: Theme.of(context).textTheme.bodyLarge?.color,
                 ),
                 items:
-                    ["Books", "Magazines", "Comics"].map((String category) {
+                    ["Cinematic", "Best Selling", "New Arrivals"].map((
+                      String category,
+                    ) {
                       return DropdownMenuItem<String>(
                         value: category,
                         child: Text(category),
@@ -187,9 +216,25 @@ class _HomepageState extends State<Homepage> {
                   setState(() {
                     selectedCategory = newValue!;
                   });
+
+                  switch (newValue) {
+                    // case 'Home':
+                    //   //Navigator.pushNamed(context, '/');
+                    //   break;
+                    case 'Cinematic':
+                      Navigator.pushNamed(context, '/cinematic');
+                      break;
+                    case 'Best Selling':
+                      Navigator.pushNamed(context, '/bestsellers');
+                      break;
+                    case 'New Arrivals':
+                      Navigator.pushNamed(context, '/newarrivals');
+                      break;
+                  }
                 },
               ),
               SizedBox(width: 50),
+
               Flexible(
                 child: GestureDetector(
                   onTap: showSearchDialog,
@@ -220,7 +265,7 @@ class _HomepageState extends State<Homepage> {
           //for theme
           actions: [
             IconButton(
-              onPressed: () => widget.onThemeChanged(),
+              onPressed: () => widget.onThemeChanged?.call(),
               icon: Icon(Icons.brightness_6),
               padding: EdgeInsets.symmetric(
                 horizontal: 40.0,

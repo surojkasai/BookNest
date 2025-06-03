@@ -1,17 +1,12 @@
 import 'package:booknest/bookslistsearch/allBooks.dart';
 import 'package:booknest/newarrivallist/horizontallist.dart';
 import 'package:booknest/pages/homepage.dart';
-import 'package:booknest/utility/section/best_section.dart';
 import 'package:flutter/material.dart';
 
 class bestSellersPage extends StatelessWidget {
   final VoidCallback onThemeChanged;
   final Widget footer;
-  const bestSellersPage({
-    super.key,
-    required this.onThemeChanged,
-    required this.footer,
-  });
+  const bestSellersPage({super.key, required this.onThemeChanged, required this.footer});
 
   @override
   Widget build(BuildContext context) {
@@ -22,63 +17,9 @@ class bestSellersPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //calling the bestsection to the next page
-            BestSection(),
-            SizedBox(height: 20),
+            HorizontalBookList(sectionTitle: "Best Selling\n", books: bestSellers),
 
-            SizedBox(height: 30),
-
-            /*Padding(
-              padding: const EdgeInsets.only(left: 130.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children:
-                      bestSellers.map((item) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: BookItemCard(
-                            title: item['title']! as String,
-                            imagePath: item['image']! as String,
-                            price: item['price']! as int,
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (context) => BookDetailsPage(
-                                        titleText: "Best Selling\n",
-                                        capText:
-                                            'Find Your Next Great Read Among Our Best Selling.',
-                                        title: item['title']! as String,
-                                        imagePath: item['image']! as String,
-                                        price: item['price']! as int,
-                                        author: 'James',
-                                        // onThemeChanged: onThemeChanged,
-                                        // footer: footer,
-                                      ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      }).toList(),
-                ),
-              ),
-            ),
-*/
-            HorizontalBookList(
-              //sectionTitle: "Editor's Picks",
-              books: bestSellers, // <-- A different list
-            ),
-            // Now add your section(s) below
-            //Section(), // You can repeat as needed
-            SizedBox(height: 30),
-            HorizontalBookList(
-              //sectionTitle: "Editor's Picks",
-              books: editorsPickList, // <-- A different list
-            ),
-
-            SizedBox(height: 30),
+            //books: getBooksByCategory("Best Selling"),
           ],
         ),
       ),
@@ -86,3 +27,92 @@ class bestSellersPage extends StatelessWidget {
     );
   }
 }
+
+// //new
+// import 'package:booknest/newarrivallist/horizontallist.dart';
+// import 'package:booknest/pages/homepage.dart';
+// import 'package:flutter/material.dart';
+// import 'package:hive_flutter/hive_flutter.dart'; // Import for ValueListenableBuilder
+// import 'package:booknest/db/book.dart'; // Import your Book model
+
+// class bestSellersPage extends StatelessWidget {
+//   final VoidCallback onThemeChanged;
+//   final Widget footer;
+//   const bestSellersPage({super.key, required this.onThemeChanged, required this.footer});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Homepage(
+//       onThemeChanged: onThemeChanged,
+//       footer: footer,
+//       body: SingleChildScrollView(
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             // Header for Best Selling section
+//             Container(
+//               height: 100,
+//               padding: EdgeInsets.only(left: 40), // Consistent padding
+//               alignment: Alignment.centerLeft,
+//               child: RichText(
+//                 text: TextSpan(
+//                   style: TextStyle(
+//                     color: Theme.of(context).textTheme.bodyLarge?.color,
+//                     decoration: TextDecoration.none,
+//                   ),
+//                   children: <TextSpan>[
+//                     TextSpan(
+//                       text: 'Best Selling\n',
+//                       style: TextStyle(
+//                         fontSize: 28,
+//                         color: Theme.of(context).textTheme.bodyLarge?.color,
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                     TextSpan(
+//                       text: 'Discover Our Top Reads!', // A more engaging subtitle
+//                       style: TextStyle(
+//                         fontSize: 20,
+//                         color: Theme.of(context).textTheme.bodyLarge?.color,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//             const SizedBox(height: 30), // Spacing after header
+//             // Dynamic Book List from Hive for Best Selling
+//             ValueListenableBuilder<Box<Book>>(
+//               valueListenable: Hive.box<Book>('books').listenable(),
+//               builder: (context, box, _) {
+//                 // Filter books by the 'Best Selling' category
+//                 final List<Book> bestSellingBooks =
+//                     box.values.where((book) => book.category == 'Best Selling').toList();
+
+//                 if (bestSellingBooks.isEmpty) {
+//                   return Center(
+//                     child: Padding(
+//                       padding: const EdgeInsets.all(40.0),
+//                       child: Text(
+//                         'No best-selling books found.',
+//                         style: Theme.of(context).textTheme.bodyMedium,
+//                       ),
+//                     ),
+//                   );
+//                 }
+
+//                 // Pass the filtered list of Book objects to HorizontalBookList
+//                 return HorizontalBookList(
+//                   sectionTitle: "Best Selling", // Pass the title for the list
+//                   books: bestSellingBooks, // Pass the List<Book>
+//                 );
+//               },
+//             ),
+
+//             const SizedBox(height: 30), // Spacing before footer
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

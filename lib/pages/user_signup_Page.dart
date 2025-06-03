@@ -1,13 +1,15 @@
+import 'package:booknest/pages/homepage.dart';
 import 'package:booknest/utility/google_auth_service.dart'
     show GoogleAuthService, signinWithGoogle;
-import 'package:booknest/utility/login.dart';
+import 'package:booknest/pages/login.dart';
+import 'package:booknest/utility/section/footer_section.dart';
 import 'package:booknest/utility/task_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserSignupPage extends StatefulWidget {
-  final VoidCallback onThemeChanged;
-  UserSignupPage({super.key, required this.onThemeChanged});
+  final VoidCallback? onThemeChanged;
+  UserSignupPage({super.key, this.onThemeChanged});
 
   @override
   State<UserSignupPage> createState() => _UserSignupPage();
@@ -18,33 +20,82 @@ class _UserSignupPage extends State<UserSignupPage> {
   final passwordcontroller = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  // void signUserUp() async {
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return const Center(child: CircularProgressIndicator());
+  //     },
+  //   );
+  //   print("Sign up button pressed");
+  //   try {
+  //     if (passwordcontroller.text.trim() ==
+  //         confirmPasswordController.text.trim()) {
+  //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  //         email:
+  //             emailcontroller.text.trim(), // Added .trim() to remove whitespace
+  //         password:
+  //             passwordcontroller.text
+  //                 .trim(), // Added .trim() to remove whitespace
+  //       );
+  //       Navigator.of(context).pop();
+  //     } else {
+  //       showErrorMessage("Password donot match");
+  //       Navigator.of(context).pop();
+  //     }
+  //     // Pop the loading dialog only on successful login (though you might navigate away instead)
+  //   } on FirebaseAuthException catch (e) {
+  //     Navigator.pop(context);
+  //     showErrorMessage(e.code);
+  //   }
+  // }
+
   void signUserUp() async {
     showDialog(
       context: context,
-      builder: (context) {
-        return const Center(child: CircularProgressIndicator());
-      },
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
-    print("Sign up button pressed");
+
     try {
-      if (passwordcontroller.text.trim() ==
+      if (passwordcontroller.text.trim() !=
           confirmPasswordController.text.trim()) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email:
-              emailcontroller.text.trim(), // Added .trim() to remove whitespace
-          password:
-              passwordcontroller.text
-                  .trim(), // Added .trim() to remove whitespace
-        );
-        Navigator.of(context).pop();
-      } else {
-        showErrorMessage("Password donot match");
-        Navigator.of(context).pop();
+        Navigator.pop(context);
+        showErrorMessage("Passwords do not match");
+        return;
       }
-      // Pop the loading dialog only on successful login (though you might navigate away instead)
+
+      final userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: emailcontroller.text.trim(),
+            password: passwordcontroller.text.trim(),
+          );
+
+      // Send verification email
+      final user = userCredential.user;
+      if (user != null && !user.emailVerified) {
+        await user.sendEmailVerification();
+        Navigator.pop(context); // Close the loading dialog
+
+        showDialog(
+          context: context,
+          builder:
+              (_) => AlertDialog(
+                title: const Text("Verify Your Email"),
+                content: const Text(
+                  "A verification email has been sent. Please check your inbox before logging in.",
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text("OK"),
+                  ),
+                ],
+              ),
+        );
+      }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
-      showErrorMessage(e.code);
+      showErrorMessage(e.message ?? "An error occurred.");
     }
   }
 
@@ -64,7 +115,7 @@ class _UserSignupPage extends State<UserSignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Homepage(
       body: Center(
         child: SingleChildScrollView(
           child: ConstrainedBox(
@@ -171,22 +222,25 @@ class _UserSignupPage extends State<UserSignupPage> {
                     },
                     child: Text("login"),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        '/',
-                        (route) => false,
-                      );
-                    },
-                    child: Text("Home"),
-                  ),
+
+                  //added this so that user can go to home without doing back
+                  // TextButton(
+                  //   onPressed: () {
+                  //     Navigator.pushNamedAndRemoveUntil(
+                  //       context,
+                  //       '/',
+                  //       (route) => false,
+                  //     );
+                  //   },
+                  //   child: Text("Home"),
+                  // ),
                 ],
               ),
             ),
           ),
         ),
       ),
+      footer: FooterSection(),
     );
   }
 }

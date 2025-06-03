@@ -8,7 +8,7 @@ class FooterSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black,
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 45),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,38 +20,46 @@ class FooterSection extends StatelessWidget {
               FooterColumn(
                 title: 'QUICK LINKS',
                 items: [
-                  'Book Request',
-                  'Best Sellers',
-                  'New Arrivals',
-                  'Blogs',
-                  'Used Books',
+                  MapEntry('Best Sellers', () {
+                    Navigator.pushNamed(context, '/bestsellers');
+                  }),
+                  MapEntry('New Arrivals', () {
+                    Navigator.pushNamed(context, '/newarrivals');
+                  }),
                 ],
               ),
               SizedBox(width: 50),
               // About
               FooterColumn(
                 title: 'ABOUT',
-                items: ['About Us', 'Careers', 'Contact Us', 'Wholesale'],
-              ),
-              SizedBox(width: 50),
-              // Genres
-              FooterColumn(
-                title: 'GENRES',
                 items: [
-                  'Fiction',
-                  'Self Help',
-                  'Business',
-                  'Children',
-                  'Nepali',
+                  MapEntry('About Us', () {
+                    Navigator.pushNamed(context, '/aboutus');
+                  }),
+                  MapEntry('Contact', () {
+                    Navigator.pushNamed(context, '/aboutus');
+                  }),
                 ],
               ),
               SizedBox(width: 50),
+              // Genres
+              // FooterColumn(
+              //   title: 'GENRES',
+              //   items: [
+              //     'Fiction',
+              //     'Self Help',
+              //     'Business',
+              //     'Children',
+              //     'Nepali',
+              //   ],
+              // ),
+              SizedBox(width: 50),
               // Others
-              FooterColumn(
-                title: 'OTHERS',
-                items: ['Cafe', "FAQ's", 'Shipping Rates'],
-              ),
-              Spacer(),
+              // FooterColumn(
+              //   title: 'OTHERS',
+              //   items: ['Cafe', "FAQ's", 'Shipping Rates'],
+              // ),
+              // Spacer(),
               // Promo box
               // Container(
               //   width: 300,

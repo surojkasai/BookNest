@@ -173,9 +173,7 @@ class GoogleAuthService {
       );
 
       // 🔐 Sign in to Firebase with the Google credentials
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(
-        credential,
-      );
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
       return userCredential.user;
     } catch (e) {
       debugPrint("Google Sign-In error: $e");

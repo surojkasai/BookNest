@@ -1,0 +1,1 @@
+{"type":"https://tools.ietf.org/html/rfc9110#section-15.5.1","title":"One or more validation errors occurred.","status":400,"errors":{"":["A non-empty request body is required."],"request":["The request field is required."]},"traceId":"00-df142fa467497baaf764bf0dd982c6ef-c791b27e2e19eee8-00"}

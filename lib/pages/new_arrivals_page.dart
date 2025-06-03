@@ -8,11 +8,7 @@ import 'package:flutter/material.dart';
 class NewArrivalsPage extends StatelessWidget {
   final VoidCallback onThemeChanged;
   final Widget footer;
-  const NewArrivalsPage({
-    super.key,
-    required this.onThemeChanged,
-    required this.footer,
-  });
+  const NewArrivalsPage({super.key, required this.onThemeChanged, required this.footer});
 
   @override
   Widget build(BuildContext context) {
@@ -22,108 +18,10 @@ class NewArrivalsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //calling the bestsection to the next page
-            NewarrivalsSection(), // ✅ just add it here!
-            SizedBox(height: 20),
-
-            // Horizontal list of book items
-            /* Padding(
-              padding: const EdgeInsets.only(left: 130.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children:
-                      newArrivals.map((item) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: BookItemCard(
-                            title: item['title']! as String,
-                            imagePath: item['image']! as String,
-                            price: item['price']! as int,
-                            onTap: () {
-                              print("Tapped: ${item['title']}");
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (context) => BookDetailsPage(
-                                        titleText: "Best Selling\n",
-                                        capText:
-                                            'Find Your Next Great Read Among Our Best Selling.',
-                                        title: item['title']! as String,
-                                        imagePath: item['image']! as String,
-                                        price: item['price']! as int,
-                                        author: 'James',
-                                        // onThemeChanged: onThemeChanged,
-                                        // footer: footer,
-                                      ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      }).toList(),
-                ),
-              ),
-            ),
-
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.only(left: 130.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children:
-                      newArrivals.map((item) {
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: BookItemCard(
-                            title: item['title']! as String,
-                            imagePath: item['image']! as String,
-                            price: item['price']! as int,
-                            onTap: () {
-                              print("Tapped: ${item['title']}");
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder:
-                                      (context) => BookDetailsPage(
-                                        titleText: "Best Selling\n",
-                                        capText:
-                                            'Find Your Next Great Read Among Our Best Selling.',
-                                        title: item['title']! as String,
-                                        imagePath: item['image']! as String,
-                                        price: item['price']! as int,
-                                        author: 'James',
-                                        // onThemeChanged: onThemeChanged,
-                                        // footer: footer,
-                                      ),
-                                ),
-                              );
-                            },
-                          ),
-                        );
-                      }).toList(),
-                ),
-              ),
-            ),
-*/
             HorizontalBookList(
-              //sectionTitle: "Editor's Picks",
-              books: editorsPickList, // <-- A different list
+              sectionTitle: "New Arrival's\n",
+              books: newArrivals, // <-- A different list
             ),
-            HorizontalBookList(
-              //sectionTitle: "New Arrivals",
-              books: newArrivals,
-            ),
-
-            SizedBox(height: 30),
-
-            // Now add your section(s) below
-            //Section(), // You can repeat as needed
-            //SizedBox(height: 30),
           ],
         ),
       ),
@@ -132,3 +30,95 @@ class NewArrivalsPage extends StatelessWidget {
     );
   }
 }
+
+//new
+// import 'package:booknest/newarrivallist/horizontallist.dart';
+// import 'package:booknest/pages/homepage.dart';
+// import 'package:flutter/material.dart';
+// import 'package:hive_flutter/hive_flutter.dart'; // Import for ValueListenableBuilder
+// import 'package:booknest/db/book.dart'; // Import your Book model
+
+// class NewArrivalsPage extends StatelessWidget {
+//   final VoidCallback onThemeChanged;
+//   final Widget footer;
+//   const NewArrivalsPage({super.key, required this.onThemeChanged, required this.footer});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Homepage(
+//       onThemeChanged: onThemeChanged,
+//       footer: footer,
+//       body: SingleChildScrollView(
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             // Header for New Arrivals section
+//             Container(
+//               height: 100,
+//               padding: EdgeInsets.only(left: 40), // Consistent padding
+//               alignment: Alignment.centerLeft,
+//               child: RichText(
+//                 text: TextSpan(
+//                   style: TextStyle(
+//                     color: Theme.of(context).textTheme.bodyLarge?.color,
+//                     decoration: TextDecoration.none,
+//                   ),
+//                   children: <TextSpan>[
+//                     TextSpan(
+//                       text: 'New Arrivals\n',
+//                       style: TextStyle(
+//                         fontSize: 28,
+//                         color: Theme.of(context).textTheme.bodyLarge?.color,
+//                         fontWeight: FontWeight.bold,
+//                       ),
+//                     ),
+//                     TextSpan(
+//                       text: 'Discover Our Latest Collections!', // Engaging subtitle
+//                       style: TextStyle(
+//                         fontSize: 20,
+//                         color: Theme.of(context).textTheme.bodyLarge?.color,
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//             const SizedBox(height: 30), // Spacing after header
+//             // Dynamic Book List from Hive for New Arrivals
+//             ValueListenableBuilder<Box<Book>>(
+//               valueListenable: Hive.box<Book>('books').listenable(),
+//               builder: (context, box, _) {
+//                 // Filter books by the 'New Arrivals' category
+//                 final List<Book> newArrivalsBooks =
+//                     box.values.where((book) => book.category == 'New Arrivals').toList();
+
+//                 // Optional: You might want to sort them by createdAt date for true "new arrivals"
+//                 newArrivalsBooks.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+
+//                 if (newArrivalsBooks.isEmpty) {
+//                   return Center(
+//                     child: Padding(
+//                       padding: const EdgeInsets.all(40.0),
+//                       child: Text(
+//                         'No new arrival books found.',
+//                         style: Theme.of(context).textTheme.bodyMedium,
+//                       ),
+//                     ),
+//                   );
+//                 }
+
+//                 // Pass the filtered and potentially sorted list of Book objects to HorizontalBookList
+//                 return HorizontalBookList(
+//                   sectionTitle: "New Arrivals", // Pass the title for the list
+//                   books: newArrivalsBooks, // Pass the List<Book>
+//                 );
+//               },
+//             ),
+
+//             const SizedBox(height: 30), // Spacing before footer
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
