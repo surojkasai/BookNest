@@ -28,10 +28,7 @@ class _UsersettingspageState extends State<Usersettingspage> {
               color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(12.0),
               border: Border.all(
-                color:
-                    Theme.of(
-                      context,
-                    ).dividerColor, // Use theme color for border
+                color: Theme.of(context).dividerColor, // Use theme color for border
                 width: 2.0,
               ),
             ),
@@ -40,10 +37,7 @@ class _UsersettingspageState extends State<Usersettingspage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Center(
-                  child: Text(
-                    "Welcome ${user?.email ?? "User"}",
-                    style: TextStyle(fontSize: 30),
-                  ),
+                  child: Text("Welcome ${user?.email ?? "User"}", style: TextStyle(fontSize: 30)),
                 ),
                 IconButton(
                   onPressed: () => signUserOut(context),
@@ -53,12 +47,9 @@ class _UsersettingspageState extends State<Usersettingspage> {
                 TextButton(onPressed: () {}, child: Text("Forgot Password?")),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      '/',
-                      (route) => false,
-                    );
+                    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
                   },
+
                   child: Text("Home"),
                 ),
               ],

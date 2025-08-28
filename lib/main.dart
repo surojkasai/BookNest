@@ -48,7 +48,7 @@ void main() async {
 
   runApp(
     KhaltiScope(
-      publicKey: 'a212c030ff134d488c83449a7d427ac2', // Khalti public key
+      publicKey: '98b99233082a4e6f96f7c46fe30cb98e', // Khalti public key
       navigatorKey: navigatorKey,
       builder: (context, navigatorKey) {
         return MultiProvider(
@@ -68,6 +68,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isDarkMode = true;
+  //to print the user info
   Future getUserInfo() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {

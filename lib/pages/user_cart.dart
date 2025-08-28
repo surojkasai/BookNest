@@ -77,7 +77,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.asset(item["image"], height: 120),
+                            // Image.asset(item["image"], height: 120),
+                            Image.memory(item["image"], height: 120),
+
                             const SizedBox(width: 16),
                             Expanded(
                               child: Column(
@@ -186,28 +188,13 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                         style: TextStyle(fontSize: 13),
                       ),
                       const SizedBox(height: 20),
-                      // SizedBox(
-                      //   width: double.infinity,
-                      //   child: ElevatedButton(
-                      //     onPressed: () {
-                      //   if (kIsWeb) {
-                      //     html.window.open(testPaymentUrl, '_blank');
-                      //   } else {
-                      //     // Optional: show message or handle differently for mobile/desktop
-                      //     print('This feature is only available on web.');
-                      //   }
-                      // },
-                      //     child: const Text("PROCEED TO CHECKOUT"),
-                      //   ),
-                      // ),
+
                       const SizedBox(height: 20),
                       const Text("Payment Options:"),
                       const SizedBox(height: 8),
                       Wrap(
                         spacing: 10,
                         children: [
-                          // Image.asset('assets/images/paypal.png', height: 50),
-                          // Image.asset('assets/images/khalti.png', height: 50),
                           IconButton(
                             onPressed: () {
                               if (kIsWeb) {
@@ -266,99 +253,6 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                             },
                             icon: Image.asset('assets/images/khalti.png', height: 50),
                           ),
-
-                          //esewa currently doesnot support flutter web
-                          // IconButton(
-                          //   onPressed: () {
-                          //     Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //         builder:
-                          //             (_) => EsewaPayment(
-                          //               amount: subtotal.toStringAsFixed(2),
-                          //               merchantCode: 'EPAYTEST',
-                          //               productId:
-                          //                   'ORDER_${DateTime.now().millisecondsSinceEpoch}', // Generate a unique order ID
-                          //               successUrl:
-                          //                   'http://localhost:7357/#/payment-success', // Your web success URL
-                          //               failureUrl: 'http://localhost:7357/#/payment-failure',
-                          //             ),
-                          //       ),
-                          //     );
-                          //   },
-                          //   icon: Image.asset('assets/images/esewa.webp', height: 50),
-                          // ),
-                          // IconButton(
-                          //   onPressed: () async {
-                          //     if (kIsWeb) {
-                          //       // Calculate total amount to send to backend (in Rupees, for Esewa)
-                          //       final double totalAmountForEsewa =
-                          //           subtotal as double; // subtotal is already in Rupees
-
-                          //       try {
-                          //         final response = await http.post(
-                          //           Uri.parse(
-                          //             'http://localhost:5279/api/esewapayment/initiate',
-                          //           ), // <--- CALL YOUR NEW ESEWA BACKEND ENDPOINT
-                          //           headers: {'Content-Type': 'application/json'},
-                          //           body: jsonEncode({
-                          //             "amount": totalAmountForEsewa,
-                          //             "productId":
-                          //                 "BOOKNEST_ORDER_${DateTime.now().millisecondsSinceEpoch}",
-                          //             "successUrl":
-                          //                 "http://localhost:7357/#/payment-success", // Your Flutter Web route
-                          //             "failureUrl":
-                          //                 "http://localhost:7357/#/payment-failure", // Your Flutter Web route
-                          //             // Add customer info if your backend Esewa DTO requires it
-                          //           }),
-                          //         );
-
-                          //         if (response.statusCode == 200) {
-                          //           final responseData = jsonDecode(response.body);
-                          //           final String? paymentUrl = responseData['payment_url'];
-
-                          //           if (paymentUrl != null && paymentUrl.startsWith('http')) {
-                          //             html.window.open(
-                          //               paymentUrl,
-                          //               '_blank',
-                          //             ); // Open Esewa URL in new tab
-                          //           } else {
-                          //             throw Exception(
-                          //               'Esewa Payment URL missing or invalid from backend: ${responseData['error_message']}',
-                          //             );
-                          //           }
-                          //         } else {
-                          //           // Handle backend error
-                          //           final errorBody = await response.body;
-                          //           print(
-                          //             "Esewa Backend Error: ${response.statusCode} - $errorBody",
-                          //           );
-                          //           ScaffoldMessenger.of(context).showSnackBar(
-                          //             SnackBar(
-                          //               content: Text(
-                          //                 'Esewa payment initiation failed: ${errorBody}',
-                          //               ),
-                          //             ),
-                          //           );
-                          //         }
-                          //       } catch (e) {
-                          //         print("Error initiating Esewa payment: $e");
-                          //         ScaffoldMessenger.of(context).showSnackBar(
-                          //           SnackBar(content: Text('Failed to initiate Esewa payment: $e')),
-                          //         );
-                          //       }
-                          //     } else {
-                          //       // Handle non-web platforms if needed (e.g., use esewa_flutter package for mobile)
-                          //       print(
-                          //         'Esewa integration is currently web-only or requires mobile-specific setup.',
-                          //       );
-                          //     }
-                          //   },
-                          //   icon: Image.asset(
-                          //     'assets/images/esewa.webp',
-                          //     height: 50,
-                          //   ), // Ensure you have an esewa.png image
-                          // ),
                         ],
                       ),
                     ],

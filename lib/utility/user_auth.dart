@@ -39,7 +39,6 @@
 import 'package:booknest/pages/Usersettingspage.dart';
 import 'package:booknest/pages/admin.dart';
 import 'package:booknest/pages/login.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -52,48 +51,61 @@ class UserAuth extends StatefulWidget {
 }
 
 class _UserAuthState extends State<UserAuth> {
+  bool? isAdmin;
+  static const String adminUID =
+      '5o3m7cmRXcbw9FRxYGgWRPJy4Be2'; // ← 🔁 Replace with your actual UID
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("User Auth"),
+        actions: [
+          if (isAdmin != null)
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(context, isAdmin! ? '/admin' : '/', (_) => false);
+              },
+              child: Text(isAdmin! ? "Admin" : "Home", style: TextStyle(color: Colors.white)),
+            ),
+        ],
+      ),
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
+          final user = snapshot.data;
+
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           }
 
-          if (snapshot.hasData) {
-            final user = snapshot.data!;
-            // Check admin and navigate
-            FirebaseFirestore.instance.collection('admins').doc(user.uid).get().then((adminDoc) {
-              if (adminDoc.exists && adminDoc.data()?['isAdmin'] == true) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => AdminBookUploadPage()),
-                );
-              } else {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => Usersettingspage()),
-                );
-              }
-            });
-
-            return Center(child: CircularProgressIndicator()); // waiting to navigate
-          } else {
-            // User not logged in, navigate to Login
+          if (user == null) {
+            // Not logged in
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => Login(onThemeChanged: widget.onThemeChanged),
-                ),
+                MaterialPageRoute(builder: (_) => Login(onThemeChanged: widget.onThemeChanged)),
               );
             });
-            return Container();
+            return SizedBox();
           }
+
+          // Logged in, check admin role if not already determined
+          if (isAdmin == null) {
+            _checkUserRole(user.uid);
+            return Center(child: CircularProgressIndicator());
+          }
+
+          // Show the appropriate page
+          return isAdmin! ? AdminBookUploadPage() : Usersettingspage();
         },
       ),
     );
+  }
+
+  Future<void> _checkUserRole(String uid) async {
+    setState(() {
+      isAdmin = uid == adminUID;
+    });
   }
 }

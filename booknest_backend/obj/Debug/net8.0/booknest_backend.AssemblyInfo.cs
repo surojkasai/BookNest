@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("booknest_backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9581deba58cf10c1eb0de22bd19b1c523d2a5504")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e920e7cb9f66210c765656409303bec7fbec99e")]
 [assembly: System.Reflection.AssemblyProductAttribute("booknest_backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("booknest_backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

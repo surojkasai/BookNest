@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 class CartProvider with ChangeNotifier {
@@ -13,7 +15,7 @@ class CartProvider with ChangeNotifier {
     return total;
   }
 
-  void addItem(String title, String author, double price, String image) {
+  void addItem(String title, String author, double price, Uint8List? image) {
     final existingIndex = _items.indexWhere((item) => item['title'] == title);
     if (existingIndex != -1) {
       _items[existingIndex]['quantity']++;
