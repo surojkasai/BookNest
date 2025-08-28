@@ -104,7 +104,7 @@ const RESOURCES = {"canvaskit/skwasm.js": "f2ad9363618c5f62e813740099a80e63",
 "assets/packages/khalti_flutter/assets/payment/wallet.svg": "334172609f45671f3a6fc8494f5359de",
 "assets/packages/khalti_flutter/assets/payment/mobilebanking.svg": "d330bd6fa7f5c1445121042b85a86b50",
 "assets/packages/khalti_flutter/assets/payment/ebanking.svg": "f3194c2c543b2dc3211ad66d7b38776f",
-"flutter_bootstrap.js": "98b3e09fd9201ab267d80796b45e687e",
+"flutter_bootstrap.js": "b5e483fa5046880df72638222414d869",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "index.html": "3aad55700d751a0dbd3ecb33a6e09e95",
 "/": "3aad55700d751a0dbd3ecb33a6e09e95"};
