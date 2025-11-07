@@ -1,16 +1,98 @@
-# booknest
+```markdown
+# 📚 BookNest
 
-A new Flutter project.
+A full stack **bookstore application** built using **Flutter** for the frontend and **.NET Web API** for the backend.
 
-## Getting Started
+## Overview
 
-This project is a starting point for a Flutter application.
+BookNest allows users to browse, purchase books seamlessly.  
+It supports **Khalti** for national payments and **PayPal** for international transactions.  
+The app also features **offline caching** via Hive DB for fast and smooth user experience.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🧩 Tech Stack
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Frontend:** Flutter  
+- **Backend:** .NET Web API  
+- **Local Storage:** Hive DB  
+- **Payments:** Khalti (National), PayPal (International)
+
+---
+
+## 📂 Project Structure
+
+```
+
+booknest/
+├── flutter_frontend/       # UI + payment + Hive caching
+└── dotnet_backend/         # API endpoints + database + payment logic
+
+````
+
+---
+
+## ✨ Main Features
+
+- Browse and search books  
+- View book details and prices  
+- Secure checkout with Khalti & PayPal  
+- Offline caching using Hive DB  
+- User authentication  
+- RESTful backend integration with Flutter frontend  
+
+---
+
+## ⚙️ Setup Instructions
+
+### 🖥️ Frontend (Flutter)
+
+```bash
+
+flutter pub get
+flutter run
+````
+
+### ⚡ Backend (.NET)
+
+```bash
+cd dotnet_backend
+dotnet restore
+dotnet run
+```
+
+---
+
+## 🔧 Configuration
+
+* Add your **Khalti** and **PayPal** API credentials in the backend configuration (`appsettings.json`)
+* Set up your **Firebase** project if authentication is enabled
+* Do **not** commit sensitive files such as API keys, credentials, or database files
+
+---
+
+## 🖼️ Screenshots / Demo
+
+### Home Page
+
+![Home](home.png)
+
+### Book Details
+
+![Book](books.png)
+
+### Checkout Page
+
+![Checkout](cart.png)
+
+---
+
+## 🚀 Status
+
+Stable build version of BookNest.
+
+---
+
+
+
+
