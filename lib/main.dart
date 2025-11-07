@@ -1,4 +1,5 @@
 import 'package:booknest/bookslistsearch/allBooks.dart';
+import 'package:booknest/config.dart';
 import 'package:booknest/db/book.dart';
 import 'package:booknest/pages/aboutus.dart';
 import 'package:booknest/pages/cinematic.dart';
@@ -21,12 +22,11 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    //options: DefaultFirebaseOptions.currentPlatform,
     options: FirebaseOptions(
-      apiKey: "AIzaSyC1BbSCCPZ3m8FQMzS6WXmVJV8CDfVfRIg",
-      appId: "1:917866687436:web:9df0f5579d9a0b7cb40b69",
-      messagingSenderId: "917866687436",
-      projectId: "booknest-54526",
+      apiKey: Config.firebaseApiKey,
+      appId: Config.firebaseProjectId,
+      messagingSenderId: Config.firebaseMessagingSenderId,
+      projectId: Config.firebaseProjectId,
     ),
   );
 
@@ -35,20 +35,9 @@ void main() async {
   Hive.registerAdapter(BookAdapter());
   final bookBox = await Hive.openBox<Book>('books');
 
-  //hive seeding logic //seeding means a way to access the static data by making it dynamic
-
-  // if (bookBox.isEmpty) {
-  //   print('Hive box is empty. Seeding initial data...');
-  //   final initialBooks = await getInitialBooks();
-  //   await bookBox.addAll(initialBooks); // Add all books at once
-  //   print('Initial data seeded successfully.');
-  // } else {
-  //   print('Hive box already contains data. Skipping seeding.');
-  // }
-
   runApp(
     KhaltiScope(
-      publicKey: '98b99233082a4e6f96f7c46fe30cb98e', // Khalti public key
+      publicKey: Config.khaltiPublicKey, // Khalti public key
       navigatorKey: navigatorKey,
       builder: (context, navigatorKey) {
         return MultiProvider(
@@ -97,7 +86,6 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
 
-      // ✅ Replace `home:` with `initialRoute:` and define routes
       initialRoute: '/',
       routes: {
         '/':
@@ -121,8 +109,6 @@ class _MyAppState extends State<MyApp> {
         '/aboutus': (context) => AboutAndContactPage(),
         '/payment-success': (context) => PaymentSuccessPage(),
         '/payment-failure': (context) => PaymentFailurePage(),
-        //'/user-settings': (context) => Usersettingspage(),
-        //'/login': (context) => Login(onThemeChanged: toggleTheme),
 
         // Add more routes here if needed
       },

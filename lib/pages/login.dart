@@ -21,25 +21,16 @@ class _LoginState extends State<Login> {
   final passwordcontroller = TextEditingController();
 
   void signUserIn() async {
-    // showDialog(
-    //   context: context,
-    //   builder: (context) {
-    //     return const Center(child: CircularProgressIndicator());
-    //   },
-    // );
-    // print("Sign in button pressed");
-
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailcontroller.text.trim(), // Added .trim() to remove whitespace
-        password: passwordcontroller.text.trim(), // Added .trim() to remove whitespace
+        email: emailcontroller.text.trim(),
+        password: passwordcontroller.text.trim(),
       );
-      // If sign-in is successful, check authentication state and navigate to home page
       if (FirebaseAuth.instance.currentUser != null) {
         Navigator.pushNamedAndRemoveUntil(
           context,
           '/', // Home page route
-          (route) => false, // Remove all previous routes
+          (route) => false,
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -122,15 +113,6 @@ class _LoginState extends State<Login> {
                         borderRadius: BorderRadius.circular(12),
                         child: IconButton(
                           onPressed: () async {
-                            // final user = await GoogleAuthService.signIn();
-                            // if (user != null) {
-                            //   Navigator.pushNamedAndRemoveUntil(
-                            //     context,
-                            //     '/',
-                            //     (route) => false,
-                            //   );
-                            //   //setState(() {}); // Refresh or navigate if needed
-                            // }
                             const String adminUid = "5o3m7cmRXcbw9FRxYGgWRPJy4Be2";
 
                             final user = await GoogleAuthService.signIn();
@@ -146,8 +128,6 @@ class _LoginState extends State<Login> {
                                   MaterialPageRoute(builder: (_) => Usersettingspage()),
                                 );
                               }
-                            } else {
-                              // Handle sign-in failure
                             }
                           },
                           icon: Image.asset(

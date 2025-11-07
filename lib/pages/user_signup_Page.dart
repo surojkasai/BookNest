@@ -1,6 +1,5 @@
 import 'package:booknest/pages/homepage.dart';
-import 'package:booknest/utility/google_auth_service.dart'
-    show GoogleAuthService, signinWithGoogle;
+import 'package:booknest/utility/google_auth_service.dart' show GoogleAuthService, signinWithGoogle;
 import 'package:booknest/pages/login.dart';
 import 'package:booknest/utility/section/footer_section.dart';
 import 'package:booknest/utility/task_buttons.dart';
@@ -20,36 +19,6 @@ class _UserSignupPage extends State<UserSignupPage> {
   final passwordcontroller = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  // void signUserUp() async {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return const Center(child: CircularProgressIndicator());
-  //     },
-  //   );
-  //   print("Sign up button pressed");
-  //   try {
-  //     if (passwordcontroller.text.trim() ==
-  //         confirmPasswordController.text.trim()) {
-  //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-  //         email:
-  //             emailcontroller.text.trim(), // Added .trim() to remove whitespace
-  //         password:
-  //             passwordcontroller.text
-  //                 .trim(), // Added .trim() to remove whitespace
-  //       );
-  //       Navigator.of(context).pop();
-  //     } else {
-  //       showErrorMessage("Password donot match");
-  //       Navigator.of(context).pop();
-  //     }
-  //     // Pop the loading dialog only on successful login (though you might navigate away instead)
-  //   } on FirebaseAuthException catch (e) {
-  //     Navigator.pop(context);
-  //     showErrorMessage(e.code);
-  //   }
-  // }
-
   void signUserUp() async {
     showDialog(
       context: context,
@@ -57,18 +26,16 @@ class _UserSignupPage extends State<UserSignupPage> {
     );
 
     try {
-      if (passwordcontroller.text.trim() !=
-          confirmPasswordController.text.trim()) {
+      if (passwordcontroller.text.trim() != confirmPasswordController.text.trim()) {
         Navigator.pop(context);
         showErrorMessage("Passwords do not match");
         return;
       }
 
-      final userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-            email: emailcontroller.text.trim(),
-            password: passwordcontroller.text.trim(),
-          );
+      final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailcontroller.text.trim(),
+        password: passwordcontroller.text.trim(),
+      );
 
       // Send verification email
       final user = userCredential.user;
@@ -85,10 +52,7 @@ class _UserSignupPage extends State<UserSignupPage> {
                   "A verification email has been sent. Please check your inbox before logging in.",
                 ),
                 actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text("OK"),
-                  ),
+                  TextButton(onPressed: () => Navigator.pop(context), child: const Text("OK")),
                 ],
               ),
         );
@@ -105,9 +69,7 @@ class _UserSignupPage extends State<UserSignupPage> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: Theme.of(context).textTheme.bodyLarge?.color,
-          title: Center(
-            child: Text(message, style: const TextStyle(color: Colors.white)),
-          ),
+          title: Center(child: Text(message, style: const TextStyle(color: Colors.white))),
         );
       },
     );
@@ -119,29 +81,21 @@ class _UserSignupPage extends State<UserSignupPage> {
       body: Center(
         child: SingleChildScrollView(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 400,
-            ), // limit width for web
+            constraints: const BoxConstraints(maxWidth: 400), // limit width for web
             child: Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
                 borderRadius: BorderRadius.circular(12.0),
                 border: Border.all(
-                  color:
-                      Theme.of(
-                        context,
-                      ).dividerColor, // Use theme color for border
+                  color: Theme.of(context).dividerColor, // Use theme color for border
                   width: 2.0,
                 ),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
-                    "Create an Account",
-                    style: TextStyle(fontSize: 30),
-                  ),
+                  const Text("Create an Account", style: TextStyle(fontSize: 30)),
                   const SizedBox(height: 10),
                   TextField(
                     controller: emailcontroller,
@@ -199,11 +153,7 @@ class _UserSignupPage extends State<UserSignupPage> {
 
                         child: IconButton(
                           onPressed: () {},
-                          icon: Image.asset(
-                            'assets/images/apple.png',
-                            height: 35,
-                            width: 35,
-                          ),
+                          icon: Image.asset('assets/images/apple.png', height: 35, width: 35),
                         ),
                       ),
                     ],
@@ -214,26 +164,12 @@ class _UserSignupPage extends State<UserSignupPage> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder:
-                              (context) =>
-                                  Login(onThemeChanged: widget.onThemeChanged),
+                          builder: (context) => Login(onThemeChanged: widget.onThemeChanged),
                         ),
                       );
                     },
                     child: Text("login"),
                   ),
-
-                  //added this so that user can go to home without doing back
-                  // TextButton(
-                  //   onPressed: () {
-                  //     Navigator.pushNamedAndRemoveUntil(
-                  //       context,
-                  //       '/',
-                  //       (route) => false,
-                  //     );
-                  //   },
-                  //   child: Text("Home"),
-                  // ),
                 ],
               ),
             ),

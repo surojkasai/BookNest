@@ -1,8 +1,5 @@
-
-
-
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json; // Still needed for JsonConvert.SerializeObject for the payload
+using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -41,7 +38,7 @@ public class KhaltiPaymentController : ControllerBase
         var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
         _httpClient.DefaultRequestHeaders.Clear();
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Key", "abf4707d93ef4b78bfedef64a9d5764d");
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Key", KhaltiConfig.SecretKey);
 
         var response = await _httpClient.PostAsync(url, content);
         var responseContent = await response.Content.ReadAsStringAsync();
@@ -69,7 +66,7 @@ public class KhaltiPaymentController : ControllerBase
         var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
         _httpClient.DefaultRequestHeaders.Clear();
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Key", "abf4707d93ef4b78bfedef64a9d5764d");
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Key", KhaltiConfig.SecretKey);
 
         var response = await _httpClient.PostAsync(url, content);
         var responseContent = await response.Content.ReadAsStringAsync();

@@ -31,7 +31,23 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+./build/
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+macos/Runner/GoogleService-Info.plist
+# Firebase / API keys
+
+.lib/config.dart
+.dart_tool/
+lib/firebase_options.dart
+
+#.NET
+bin/
+obj/
+.vs/
+appsettings.json
+appsettings.Development.json
+KhaltiConfig.cs
 
 # Symbolication related
 app.*.symbols

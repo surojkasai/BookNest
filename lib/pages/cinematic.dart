@@ -1,9 +1,9 @@
 import 'package:booknest/bookslistsearch/allBooks.dart';
-import 'package:booknest/newarrivallist/horizontallist.dart'; // This is your HorizontalBookList
+import 'package:booknest/newarrivallist/horizontallist.dart';
 import 'package:booknest/pages/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart'; // Import for Hive
-import 'package:booknest/db/book.dart'; // Import your Book model
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:booknest/db/book.dart';
 
 class cinematicpage extends StatelessWidget {
   final VoidCallback onThemeChanged;
@@ -50,12 +50,10 @@ class cinematicpage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 30), // Spacing after header
-            // --- CRITICAL CHANGE: Hive Integration ---
-            // Use ValueListenableBuilder to fetch and display new arrival books from Hive
+            const SizedBox(height: 30),
+
             ValueListenableBuilder<Box<Book>>(
-              valueListenable:
-                  Hive.box<Book>('books').listenable(), // Listen to your 'books' Hive box
+              valueListenable: Hive.box<Book>('books').listenable(),
               builder: (context, box, _) {
                 // Fetch and filter books that are marked as 'New Arrivals'
                 final cinematicBooks =
@@ -73,11 +71,7 @@ class cinematicpage extends StatelessWidget {
                   );
                 }
 
-                // Pass the filtered and sorted List<Book> to HorizontalBookList
-                return HorizontalBookList(
-                  //sectionTitle: "Best Selling\n", // Pass the title for the list
-                  books: cinematicBooks, // Pass the List<Book> fetched from Hive
-                );
+                return HorizontalBookList(books: cinematicBooks);
               },
             ),
           ],
