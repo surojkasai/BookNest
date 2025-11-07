@@ -1,7 +1,7 @@
 ```markdown
 # 📚 BookNest
 
-A full stack **bookstore application** built using **Flutter** for the frontend and **.NET Web API** for the backend.
+A full stack **bookstore web application** built using **Flutter** for the frontend and **.NET Web API** for the backend.
 
 ## Overview
 
@@ -22,15 +22,11 @@ The app also features **offline caching** via Hive DB for fast and smooth user e
 
 ## 📂 Project Structure
 
-```
 
-booknest/
-├── flutter_frontend/       # UI + payment + Hive caching
-└── dotnet_backend/         # API endpoints + database + payment logic
+    booknest/
+    ├── flutter_frontend/       # UI + payment + Hive caching
+    └── dotnet_backend/         # API endpoints + database + payment logic
 
-````
-
----
 
 ## ✨ Main Features
 
