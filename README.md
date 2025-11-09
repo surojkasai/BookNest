@@ -7,16 +7,16 @@ A full stack **bookstore web application** built using **Flutter** for the front
 
 BookNest allows users to browse, purchase books seamlessly.  
 It supports **Khalti** for national payments and **PayPal** for international transactions.  
-The app also features **offline caching** via Hive DB for fast and smooth user experience.
+The app also features **caching** via Hive DB for fast and smooth user experience.
 
 ---
 
 ## 🧩 Tech Stack
 
-- **Frontend:** Flutter  
-- **Backend:** .NET Web API  
-- **Local Storage:** Hive DB  
-- **Payments:** Khalti (National), PayPal (International)
+- Frontend: Flutter  
+- Backend: .NET Web API  
+- Local caching: Hive DB  
+- Payments: Khalti (National), PayPal (International)
 
 ---
 
