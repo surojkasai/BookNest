@@ -58,6 +58,7 @@ class HorizontalBookList extends StatelessWidget {
                                       capText:
                                           'Find Your Next Great Read'
                                           '${sectionTitle != null ? " Among Our $sectionTitle" : ""}',
+                                      genre: book.genre,
                                       title: book.title,
                                       imageBytes: book.imageBytes,
                                       price: book.price,

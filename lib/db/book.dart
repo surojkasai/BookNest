@@ -26,7 +26,11 @@ class Book extends HiveObject {
   @HiveField(6)
   DateTime createdAt;
 
+  @HiveField(7)
+  String genre;
+
   Book({
+    required this.genre,
     required this.title,
     required this.author,
     required this.description,

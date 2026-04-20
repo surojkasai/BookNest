@@ -13,7 +13,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
     return byteData.buffer.asUint8List();
   } catch (e) {
     print('Error loading asset image $assetPath: $e');
-    //return Uint8List(0); // Return an empty Uint8List or null on error
     return null;
   }
 }
@@ -91,7 +90,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'createdAt': DateTime.now().toIso8601String(),
 //   },
 // ];
-
 // final bestSellers = [
 //   {
 //     'title': 'It End With Us',
@@ -163,7 +161,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'category': 'Best Selling',
 //     'createdAt': DateTime.now().toIso8601String(),
 //   },
-
 //   {
 //     'title': 'Seto Dharti',
 //     'image': 'assets/bookImages/newarrival/setodharti.webp',
@@ -174,7 +171,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'category': 'Best Selling',
 //     'createdAt': DateTime.now().toIso8601String(),
 //   },
-
 //   {
 //     'title': 'Woman Code',
 //     'image': 'assets/bookImages/newarrival/womancode.webp',
@@ -195,7 +191,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'category': 'Best Selling',
 //     'createdAt': DateTime.now().toIso8601String(),
 //   },
-
 //   {
 //     'title': 'Savage Lover',
 //     'image': 'assets/bookImages/newarrival/savagelover.webp',
@@ -214,7 +209,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'description':
 //         'As a third-year Ph.D. candidate, Olive Smith doesnt believe in lasting romantic relationships but her best friend does, and thats what got her into this situation. C onvincing Anh that Olive on her way to a happily ever after was always going to be tough, scientists require proof. So, like any self-respecting woman, Olive panics and kisses the first man she sees. That man is none other than Adam C arlsen, a young hotshot professor and well-known ass. Which is why Olive is positively floored when he agrees to keep her charade a secret and be her fake boyfriend. But when a big science conference goes haywire, their little experiment feels dangerously close to combustion. Olive discovers that the only thing more complicated than a hypothesis on love is putting her own heart under the microscope.',
 //   },
-
 //   {
 //     'title': 'The Hidden Hindu',
 //     'image': 'assets/bookImages/bestsellerpage/thehiddenhindu.webp',
@@ -239,7 +233,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'description':
 //         'Before It Ends with Us, it started with Atlas. Multi-million copy bestselling author Colleen Hoover tells fan favourite Atlass side of the story and shares what comes next in this long-anticipated sequel to the #1 Sunday Times bestseller It Ends with Us Lily and her ex-husband, Ryle, have just settled into a civil co-parenting rhythm when she suddenly bumps into her first love, Atlas, again. After nearly two years separated, she is elated that for once, time is on their side, and she immediately says yes when Atlas asks her on a date. But her excitement is quickly hampered by the knowledge that, though they are no longer married, Ryle is still very much a part of her life--and Atlas Corrigan is the one man he will hate being in his ex-wife and daughters life. Switching between the perspectives of Lily and Atlas, It Starts with Us picks up right where the epilogue for the bestselling phenomenon It Ends with Us left off. Experience the romantic and satisfying conclusion to Colleen Hoovers powerful global bestselling novel, It Ends with Us.',
 //   },
-
 //   {
 //     'title': 'Jujutsu kaisen',
 //     'image': 'assets/bookImages/bestsellerpage/jujutsu.jpg',
@@ -257,7 +250,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //         'Continuing the story begun in The Hobbit, all three parts of the epic masterpiece, The Lord of the Rings, in one paperback. Features the definitive edition of the text, fold-out flaps with the original two-colour maps, and a revised and expanded index.Sauron, the Dark Lord, has gathered to him all the Rings of Power – the means by which he intends to rule Middle-earth. All he lacks in his plans for dominion is the One Ring – the ring that rules them all – which has fallen into the hands of the hobbit, Bilbo Baggins.In a sleepy village in the Shire, young Frodo Baggins finds himself faced with an immense task, as the Ring is entrusted to his care. He must leave his home and make a perilous journey across the realms of Middle-earth to the Crack of Doom, deep inside the territories of the Dark Lord. There he must destroy the Ring forever and foil the Dark Lord in his evil purpose.Since it was first published in 1954, The Lord of the Rings has been a book people have treasured. Steeped in unrivalled magic and otherworldliness, its sweeping fantasy has touched the hearts of young and old alike.This single-volume paperback edition is the definitive text, fully restored with almost 400 corrections – with the full co-operation of Christopher Tolkien – and features a striking new cover.',
 //   },
 // ];
-
 // final newArrivals = [
 //   {
 //     'title': 'Seto Dharti',
@@ -269,7 +261,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'category': 'New Arrivals',
 //     'createdAt': DateTime.now().toIso8601String(),
 //   },
-
 //   {
 //     'title': 'Woman Code',
 //     'image': 'assets/bookImages/newarrival/womancode.webp',
@@ -320,7 +311,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'category': 'New Arrivals',
 //     'createdAt': DateTime.now().toIso8601String(),
 //   },
-
 //   {
 //     'title': 'The Hidden Hindu',
 //     'image': 'assets/bookImages/bestsellerpage/thehiddenhindu.webp',
@@ -351,7 +341,6 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'category': 'New Arrivals',
 //     'createdAt': DateTime.now().toIso8601String(),
 //   },
-
 //   {
 //     'title': 'Jujutsu kaisen',
 //     'image': 'assets/bookImages/bestsellerpage/jujutsu.jpg',
@@ -373,12 +362,12 @@ Future<Uint8List?> _getImageBytesFromAsset(String assetPath) async {
 //     'createdAt': DateTime.now().toIso8601String(),
 //   },
 // ];
-
 // final allBooks = [...cinematic, ...bestSellers, ...newArrivals];
 //regular
 
 final List<Map<String, dynamic>> cinematic = [
   {
+    'genre': 'Fiction and Literature:Fantasy,Classics,Science Fiction',
     'title': 'Lord Of The Rings',
     'image': 'assets/bookImages/bestsellerpage/lotr.jpg',
     'price': 100.0,
@@ -389,6 +378,7 @@ final List<Map<String, dynamic>> cinematic = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Humor',
     'title': 'Horrid the Henry',
     'image': 'assets/bookImages/newarrival/horridthehenry.webp',
     'price': 200.0,
@@ -399,26 +389,29 @@ final List<Map<String, dynamic>> cinematic = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Fantasy',
     'title': 'Harry Potter',
     'image': 'assets/bookImages/harrypotter.jpg',
     'price': 200.0,
     'author': 'by Andrzej Sapkowski',
-    'description':
-        ';Meet Geralt of Rivia - the Witcher - who holds the line against the monsters plaguing humanity in the bestselling series that inspired the Witcher video games and a major Netflix show.The Witchers magic powers and lifelong training have made him a brilliant fighter and a merciless assassin.Yet he is no ordinary killer: he hunts the vile fiends that ravage the land and attack the innocent.But not everything monstrous-looking is evil; not everything fair is good . . . and in every fairy tale there is a grain of truth.Translated by Danusia Stok and David French.Andrzej Sapkowski, winner of the World Fantasy Lifetime Achievement award, started an international phenomenon with his Witcher series. This boxed set contains all eight books: THE LAST WISH, SWORD OF DESTINY, BLOOD OF ELVES, TIME OF CONTEMPT, BAPTISM OF FIRE, THE TOWER OF THE SWALLOW, THE LADY OF THE LAKE, SEASON OF STORMS.',
+    'description': '''
+        Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harrys eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. An incredible adventure is about to begin!These new editions of the classic and internationally bestselling, multi-award-winning series feature instantly pick-up-able new jackets by Jonny Duddle, with huge child appeal, to bring Harry Potter to the next generation of readers. Its time to PASS THE MAGIC ON''',
     'category': 'cinematic', // <-- ADD THIS LINE
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Fantasy',
     'title': 'The Witcher',
     'image': 'assets/bookImages/the_witcher.jpg',
     'price': 200.0,
     'author': 'by by J. K. Rowling',
     'description':
-        'Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harrys eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. An incredible adventure is about to begin!These new editions of the classic and internationally bestselling, multi-award-winning series feature instantly pick-up-able new jackets by Jonny Duddle, with huge child appeal, to bring Harry Potter to the next generation of readers. Its time to PASS THE MAGIC ON',
+        'Meet Geralt of Rivia - the Witcher - who holds the line against the monsters plaguing humanity in the bestselling series that inspired the Witcher video games and a major Netflix show.The Witchers magic powers and lifelong training have made him a brilliant fighter and a merciless assassin.Yet he is no ordinary killer: he hunts the vile fiends that ravage the land and attack the innocent.But not everything monstrous-looking is evil; not everything fair is good . . . and in every fairy tale there is a grain of truth.Translated by Danusia Stok and David French.Andrzej Sapkowski, winner of the World Fantasy Lifetime Achievement award, started an international phenomenon with his Witcher series. This boxed set contains all eight books: THE LAST WISH, SWORD OF DESTINY, BLOOD OF ELVES, TIME OF CONTEMPT, BAPTISM OF FIRE, THE TOWER OF THE SWALLOW, THE LADY OF THE LAKE, SEASON OF STORMS.',
     'category': 'cinematic', // <-- ADD THIS LINE
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Manga and Graphic Novels:Manga',
     'title': 'Demon Slayer',
     'image': 'assets/bookImages/Demon_Slayer.jpg',
     'price': 500.0,
@@ -429,6 +422,7 @@ final List<Map<String, dynamic>> cinematic = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Science Fiction',
     'title': 'Dune',
     'image': 'assets/bookImages/cinematic/dune.webp',
     'price': 1000.0,
@@ -439,6 +433,7 @@ final List<Map<String, dynamic>> cinematic = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Science Fiction',
     'title': 'Game of Thrones',
     'image': 'assets/bookImages/got.jpg',
     'price': 1000.0,
@@ -452,15 +447,18 @@ final List<Map<String, dynamic>> cinematic = [
 
 final List<Map<String, dynamic>> bestSelling = [
   {
+    'genre': 'Fiction and Literature:Romance',
     'title': 'It End With Us',
     'image': 'assets/bookImages/newarrival/itendwithus.webp',
     'price': 200.0,
     'author': 'by Colleen Hoover',
-    'description': 'sdvgsd',
+    'description':
+        'Instant New York Times Bestseller Combining a captivating romance with a cast of all-too-human characters, Colleen Hoover`s It Ends With Us is an unforgettable tale of love that comes at the ultimate price.Lily hasn`t always had it easy, but that`s never stopped her from working hard for the life she wants. She`s come a long way from the small town in Maine where she grew up—she graduated from college, moved to Boston, and started her own business. So when she feels a spark with a gorgeous neurosurgeon named Ryle Kincaid, everything in Lily`s life suddenly seems almost too good to be true. Ryle is assertive, stubborn, maybe even a little arrogant. He`s also sensitive, brilliant, and has a total soft spot for Lily. And the way he looks in scrubs certainly doesn`t hurt. Lily can`t get him out of her head. But Ryle`s complete aversion to relationships is disturbing. Even as Lily finds herself becoming the exception to his “no dating” rule, she can`t help but wonder what made him that way in the first place. As questions about her new relationship overwhelm her, so do thoughts of Atlas Corrigan—her first love and a link to the past she left behind. He was her kindred spirit, her protector. When Atlas suddenly reappears, everything Lily has built with Ryle is threatened.',
     'category': 'Best Selling',
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'History, Biography, and Social Science:Psychology',
     'title': '48 Laws of Power',
     'image': 'assets/bookImages/bestsellerpage/48lawsofpower.webp',
     'price': 1598.0,
@@ -471,6 +469,7 @@ final List<Map<String, dynamic>> bestSelling = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Philosophical–religious',
     'title': 'Bhagavad Gita ',
     'image': 'assets/bookImages/newarrival/bhagavadgita.webp',
     'price': 200.0,
@@ -481,6 +480,7 @@ final List<Map<String, dynamic>> bestSelling = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Fantasy,Romance,Young adult',
     'title': 'BitterBlue',
     'image': 'assets/bookImages/newarrival/bitterblue.webp',
     'price': 200.0,
@@ -491,6 +491,7 @@ final List<Map<String, dynamic>> bestSelling = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Humor',
     'title': 'Horrid the Henry',
     'image': 'assets/bookImages/newarrival/horridthehenry.webp',
     'price': 200.0,
@@ -501,7 +502,8 @@ final List<Map<String, dynamic>> bestSelling = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
-    'title': 'Murakami',
+    'genre': 'Fiction and Literature:Romance',
+    'title': 'Kafka on the shores',
     'image': 'assets/bookImages/newarrival/murakami.webp',
     'price': 200.0,
     'author': 'by Haruki Murakami',
@@ -511,6 +513,7 @@ final List<Map<String, dynamic>> bestSelling = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Nepali:Nepali Literature',
     'title': 'Usle Diye Ko Umer',
     'image': 'assets/bookImages/newarrival/uslediyekoumer.webp',
     'price': 200.0,
@@ -522,6 +525,7 @@ final List<Map<String, dynamic>> bestSelling = [
   },
 
   {
+    'genre': 'Nepali:Nepali Literature',
     'title': 'Seto Dharti',
     'image': 'assets/bookImages/newarrival/setodharti.webp',
     'price': 200.0,
@@ -533,6 +537,7 @@ final List<Map<String, dynamic>> bestSelling = [
   },
 
   {
+    'genre': 'Self Improvement and Relationships:Self Help,Health',
     'title': 'Woman Code',
     'image': 'assets/bookImages/newarrival/womancode.webp',
     'price': 200.0,
@@ -543,6 +548,7 @@ final List<Map<String, dynamic>> bestSelling = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Romance,Young adult,Contemporary',
     'title': 'Better Than Movies',
     'image': 'assets/bookImages/newarrival/betterthanmovies.webp',
     'price': 200.0,
@@ -554,6 +560,7 @@ final List<Map<String, dynamic>> bestSelling = [
   },
 
   {
+    'genre': 'Fiction and Literature:Romance',
     'title': 'Savage Lover',
     'image': 'assets/bookImages/newarrival/savagelover.webp',
     'price': 200.0,
@@ -564,59 +571,77 @@ final List<Map<String, dynamic>> bestSelling = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Contemporary,Adult Fiction,Young adult',
     'title': 'The Love Hyptothesis',
     'image': 'assets/bookImages/bestsellerpage/thelovehypothesis.webp',
     'price': 900.0,
     'author': 'by Ali Hazelwood',
     'description':
         'As a third-year Ph.D. candidate, Olive Smith doesnt believe in lasting romantic relationships but her best friend does, and thats what got her into this situation. C onvincing Anh that Olive on her way to a happily ever after was always going to be tough, scientists require proof. So, like any self-respecting woman, Olive panics and kisses the first man she sees. That man is none other than Adam C arlsen, a young hotshot professor and well-known ass. Which is why Olive is positively floored when he agrees to keep her charade a secret and be her fake boyfriend. But when a big science conference goes haywire, their little experiment feels dangerously close to combustion. Olive discovers that the only thing more complicated than a hypothesis on love is putting her own heart under the microscope.',
+    'category': 'Best Selling',
+    'createdAt': DateTime.now().toIso8601String(),
   },
 
   {
+    'genre': 'Spirituality and Philosophy:Mythology ',
     'title': 'The Hidden Hindu',
     'image': 'assets/bookImages/bestsellerpage/thehiddenhindu.webp',
     'price': 950.0,
     'author': 'by Akshat Gupta',
     'description':
         'Prithvi, a twenty-one-year-old, is searching for a mysterious middle-aged aghori (Shiva devotee), Om Shastri, who was traced more than 200 years ago before he was captured and transported to a high-tech facility on an isolated Indian island. When the aghori was drugged and hypnotized for interrogation by a team of specialists, he claimed to have witnessed all four yugas (the epochs in Hinduism) and even participated in both Ramayana and Mahabharata. Oms revelations of his incredible past that defied the nature of mortality left everyone baffled. The team also discovers that Om had been in search of the other immortals from every yuga. These bizarre secrets could shake up the ancient beliefs of the present and alter the course of the future. So who is Om Shastri? Why was he captured? Board the boat of Om Shastris secrets, Prithvis pursuit and adventures of other enigmatic immortals of Hindu mythology in this exciting and revealing journey.',
+    'category': 'Best Selling',
+    'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Business and Investing:Business',
     'title': 'How To Talk To Anyone',
     'image': 'assets/bookImages/bestsellerpage/howtotalktoanyone.webp',
     'price': 500.0,
     'author': 'by Leil Lowndes',
     'description':
         'A fun, witty and informative guide containing 92 little tricks for big success in personal relationships and business. There are two kinds of people in life. Those who walk into a room and say: Well, here I am!. And those who walk in and say: Ahhh, there you are. In this book, Leil Lowndes writes with wit, irreverence about relationships, body language and how we relate to each other. It contains extremely usable and intelligent strategies for love and business which include: Charming body language and gestures - the exclusive smile, eyes glued to the other person, come hither hands with palms open etc. How to work the party - including making an entrance, be the chooser not the choosee, and mingling not munching (for all those who head straight for the food table!).',
+    'category': 'Best Selling',
+    'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Adult Fiction,Romance,Young adult',
     'title': 'It Starts With Us',
     'image': 'assets/bookImages/bestsellerpage/itstartswithus.webp',
     'price': 600.0,
     'author': 'by Colleen Hoover',
     'description':
         'Before It Ends with Us, it started with Atlas. Multi-million copy bestselling author Colleen Hoover tells fan favourite Atlass side of the story and shares what comes next in this long-anticipated sequel to the #1 Sunday Times bestseller It Ends with Us Lily and her ex-husband, Ryle, have just settled into a civil co-parenting rhythm when she suddenly bumps into her first love, Atlas, again. After nearly two years separated, she is elated that for once, time is on their side, and she immediately says yes when Atlas asks her on a date. But her excitement is quickly hampered by the knowledge that, though they are no longer married, Ryle is still very much a part of her life--and Atlas Corrigan is the one man he will hate being in his ex-wife and daughters life. Switching between the perspectives of Lily and Atlas, It Starts with Us picks up right where the epilogue for the bestselling phenomenon It Ends with Us left off. Experience the romantic and satisfying conclusion to Colleen Hoovers powerful global bestselling novel, It Ends with Us.',
+    'category': 'Best Selling',
+    'createdAt': DateTime.now().toIso8601String(),
   },
 
   {
+    'genre': 'Manga and Graphic Novels:Manga',
     'title': 'Jujutsu kaisen',
     'image': 'assets/bookImages/bestsellerpage/jujutsu.jpg',
     'price': 800.0,
     'author': 'by Gege Akutami',
     'description':
         'Yuji Itadori is resolved to save the world from cursed spirits, but he soon learns that the best way to do it is to slowly lose his humanity and become one himself! In a world where cursed spirits feed on unsuspecting humans, fragments of the legendary and feared demon Ryomen Sukuna were lost and scattered about. Should any demon consume Sukunas body parts, the power they gain could destroy the world as we know it. Fortunately, there exists a mysterious school of Jujutsu Sorcerers who exist to protect the precarious existence of the living from the supernatural! Yuta Okkotsu is a nervous high school student who is suffering from a serious problem...his childhood friend Rika has turned into a curse and wont leave him alone. Since Rika is no ordinary curse, his plight gets noticed by Satoru Gojo, a teacher at Jujutsu High, a school where exorcists are taught to combat curses. Gojo convinces him to enroll, but can Yuta learn enough in time to confront the curse that haunts him?',
+    'category': 'Best Selling',
+    'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Fantasy,Classics,Science Fiction',
     'title': 'Lord Of The Rings',
     'image': 'assets/bookImages/bestsellerpage/lotr.jpg',
     'price': 700.0,
     'author': 'by J. R. R. Tolkien',
     'description':
         'Continuing the story begun in The Hobbit, all three parts of the epic masterpiece, The Lord of the Rings, in one paperback. Features the definitive edition of the text, fold-out flaps with the original two-colour maps, and a revised and expanded index.Sauron, the Dark Lord, has gathered to him all the Rings of Power – the means by which he intends to rule Middle-earth. All he lacks in his plans for dominion is the One Ring – the ring that rules them all – which has fallen into the hands of the hobbit, Bilbo Baggins.In a sleepy village in the Shire, young Frodo Baggins finds himself faced with an immense task, as the Ring is entrusted to his care. He must leave his home and make a perilous journey across the realms of Middle-earth to the Crack of Doom, deep inside the territories of the Dark Lord. There he must destroy the Ring forever and foil the Dark Lord in his evil purpose.Since it was first published in 1954, The Lord of the Rings has been a book people have treasured. Steeped in unrivalled magic and otherworldliness, its sweeping fantasy has touched the hearts of young and old alike.This single-volume paperback edition is the definitive text, fully restored with almost 400 corrections – with the full co-operation of Christopher Tolkien – and features a striking new cover.',
+    'createdAt': DateTime.now().toIso8601String(),
   },
 ];
 
 final List<Map<String, dynamic>> newArrivals = [
   {
+    'genre': 'Nepali:Nepali Literature',
     'title': 'Seto Dharti',
     'image': 'assets/bookImages/newarrival/setodharti.webp',
     'price': 200.0,
@@ -628,6 +653,7 @@ final List<Map<String, dynamic>> newArrivals = [
   },
 
   {
+    'genre': 'Self Improvement and Relationships:Self Help,Health',
     'title': 'Woman Code',
     'image': 'assets/bookImages/newarrival/womancode.webp',
     'price': 200.0,
@@ -638,6 +664,7 @@ final List<Map<String, dynamic>> newArrivals = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Romance,Young adult,Contemporary',
     'title': 'Better Than Movies',
     'image': 'assets/bookImages/newarrival/betterthanmovies.webp',
     'price': 200.0,
@@ -648,6 +675,7 @@ final List<Map<String, dynamic>> newArrivals = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Romance',
     'title': 'It End With Us',
     'image': 'assets/bookImages/newarrival/itendwithus.webp',
     'price': 200.0,
@@ -658,6 +686,7 @@ final List<Map<String, dynamic>> newArrivals = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Romance',
     'title': 'Savage Lover',
     'image': 'assets/bookImages/newarrival/savagelover.webp',
     'price': 200.0,
@@ -668,6 +697,7 @@ final List<Map<String, dynamic>> newArrivals = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Contemporary,Adult Fiction,Young Adult',
     'title': 'The Love Hyptothesis',
     'image': 'assets/bookImages/bestsellerpage/thelovehypothesis.webp',
     'price': 900.0,
@@ -679,6 +709,7 @@ final List<Map<String, dynamic>> newArrivals = [
   },
 
   {
+    'genre': 'Spirituality and Philosophy:Mythology',
     'title': 'The Hidden Hindu',
     'image': 'assets/bookImages/bestsellerpage/thehiddenhindu.webp',
     'price': 950.0,
@@ -689,6 +720,7 @@ final List<Map<String, dynamic>> newArrivals = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Business and Investing:Business',
     'title': 'How To Talk To Anyone',
     'image': 'assets/bookImages/bestsellerpage/howtotalktoanyone.webp',
     'price': 500.0,
@@ -699,6 +731,7 @@ final List<Map<String, dynamic>> newArrivals = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Adult Fiction,Romance,Young adult',
     'title': 'It Starts With Us',
     'image': 'assets/bookImages/bestsellerpage/itstartswithus.webp',
     'price': 600.0,
@@ -710,6 +743,7 @@ final List<Map<String, dynamic>> newArrivals = [
   },
 
   {
+    'genre': 'Manga and Graphic Novels:Manga',
     'title': 'Jujutsu kaisen',
     'image': 'assets/bookImages/bestsellerpage/jujutsu.jpg',
     'price': 800.0,
@@ -720,6 +754,7 @@ final List<Map<String, dynamic>> newArrivals = [
     'createdAt': DateTime.now().toIso8601String(),
   },
   {
+    'genre': 'Fiction and Literature:Fantasy,Classics,Science Fiction',
     'title': 'Lord Of The Rings',
     'image': 'assets/bookImages/bestsellerpage/lotr.jpg',
     'price': 700.0,
@@ -739,12 +774,13 @@ Future<List<Book>> getInitialBooks() async {
     ...cinematic,
   ];
 
-  print('Starting to process initial book data...'); // Debug print
+  print('Starting to process initial book data...');
 
   for (var bookMap in allStaticBooksData) {
     // --- IMPORTANT DEBUGGING LOGS ---
     print('\n--- Processing Book: ${bookMap['title'] ?? 'UNKNOWN TITLE'} ---');
     print('Raw Map: $bookMap');
+    print('Genre: ${bookMap['genre']} (Type: ${bookMap['genre']?.runtimeType})');
     print('Category: ${bookMap['category']} (Type: ${bookMap['category']?.runtimeType})');
     print('CreatedAt: ${bookMap['createdAt']} (Type: ${bookMap['createdAt']?.runtimeType})');
     print('Image Path: ${bookMap['image']} (Type: ${bookMap['image']?.runtimeType})');
@@ -761,17 +797,16 @@ Future<List<Book>> getInitialBooks() async {
     }
 
     // --- Cast and assign values ---
+    final String genre = bookMap['genre'] as String? ?? 'Unknown genre';
     final String title = bookMap['title'] as String? ?? 'Untitled';
     final String author = bookMap['author'] as String? ?? 'Unknown Author';
     final String description = bookMap['description'] as String? ?? 'No description available.';
     final double price =
         (bookMap['price'] as num?)?.toDouble() ?? 0.0; // Safely convert, default to 0.0
-    final String category =
-        bookMap['category'] as String ?? 'General'; // This is the MOST LIKELY culprit
+    final String category = (bookMap['category'] as String?) ?? 'General';
 
     DateTime createdAt;
     try {
-      // This cast is where the "createdAt" null error would occur if 'createdAt' key is missing or null
       createdAt = DateTime.parse(bookMap['createdAt'] as String);
     } catch (e) {
       print('WARNING: Could not parse createdAt for "$title". Using current time. Error: $e');
@@ -780,6 +815,7 @@ Future<List<Book>> getInitialBooks() async {
 
     booksToSeed.add(
       Book(
+        genre: genre,
         title: title,
         author: author,
         description: description,

@@ -1,3 +1,5 @@
+import 'package:booknest/config.dart';
+import 'package:booknest/pages/admin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +15,18 @@ class _UsersettingspageState extends State<Usersettingspage> {
 
   void signUserOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
-    Navigator.pop(context); // ✅ Correct usage with context
+    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
 
   @override
   Widget build(BuildContext context) {
+    final isAdmin = user?.uid == Config.adminUID;
+
     return Scaffold(
+      appBar: AppBar(
+        title: Text(isAdmin ? 'Admin Account' : 'Account Settings'),
+        backgroundColor: const Color(0xFF1B152A),
+      ),
       body: Center(
         child: Flexible(
           child: Container(
@@ -27,30 +35,54 @@ class _UsersettingspageState extends State<Usersettingspage> {
             decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(
-                color: Theme.of(context).dividerColor, // Use theme color for border
-                width: 2.0,
-              ),
+              border: Border.all(color: Theme.of(context).dividerColor, width: 2.0),
             ),
-            height: 350,
+            height: isAdmin ? 400 : 350, // Slightly taller for admin
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Center(
-                  child: Text("Welcome ${user?.email ?? "User"}", style: TextStyle(fontSize: 30)),
+                  child: Text(
+                    "Welcome ${user?.email ?? "User"}",
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
                 ),
-                IconButton(
+                if (isAdmin) ...[
+                  const Text(
+                    'Administrator Access',
+                    style: TextStyle(fontSize: 16, color: Colors.blue),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AdminBookUploadPage()),
+                      );
+                    },
+                    icon: const Icon(Icons.admin_panel_settings),
+                    label: const Text('Open Admin Panel'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
                   onPressed: () => signUserOut(context),
-                  icon: Icon(Icons.logout),
-                  tooltip: "Sign Out",
+                  icon: const Icon(Icons.logout),
+                  label: const Text('Sign Out'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red.shade600,
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  ),
                 ),
-                TextButton(onPressed: () {}, child: Text("Forgot Password?")),
+                TextButton(onPressed: () {}, child: const Text("Forgot Password?")),
                 TextButton(
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
                   },
-
-                  child: Text("Home"),
+                  child: const Text("Home"),
                 ),
               ],
             ),

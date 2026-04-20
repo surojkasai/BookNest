@@ -16,17 +16,6 @@ class _SearchDialogueState extends State<SearchDialogue> {
   //List<Map<String, dynamic>> results = [];
   List<Book> results = []; // Change from Map<String, dynamic> to Book
 
-  // void updateResults(String input) {
-  //   setState(() {
-  //     query = input; // update the query first ✅
-  //     results =
-  //         allBooks.where((book) {
-  //           final title = book['title'] as String;
-  //           return title.toLowerCase().contains(query.toLowerCase());
-  //         }).toList();
-  //   });
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -99,8 +88,18 @@ class _SearchDialogueState extends State<SearchDialogue> {
                                   ),
                           //Image.asset(book['image'], width: 40),
                           title: Text(book.title),
-                          //Text(book['title']),
-                          subtitle: Text("${book.author}"),
+                          subtitle: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/author-books', arguments: book.author);
+                            },
+                            child: Text(
+                              "${book.author}",
+                              style: TextStyle(
+                                color: Colors.blue.shade400,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
                           //Text("Rs. ${book['price']}"),
                           onTap: () {
                             Navigator.push(
@@ -110,15 +109,11 @@ class _SearchDialogueState extends State<SearchDialogue> {
                                     (_) => BookDetailsPage(
                                       titleText: "Search Result\n",
                                       capText: 'Book you searched for.',
+                                      genre: book.genre,
                                       title: book.title,
-                                      //book['title'],
-                                      //imagePath: book['image'],
                                       price: book.price,
-                                      //book['price'],
                                       author: book.author,
-                                      //book['author'],
                                       description: book.description,
-                                      //book['description'],
                                     ),
                               ),
                             );

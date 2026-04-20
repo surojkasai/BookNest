@@ -1,13 +1,13 @@
+import 'package:booknest/config.dart';
 import 'package:booknest/pages/Usersettingspage.dart';
+import 'package:booknest/pages/admin.dart';
 import 'package:booknest/pages/login.dart';
 import 'package:booknest/utility/featured/search/search_box.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart' show GoogleSignIn, GoogleSignInAccount;
 
 class Homepage extends StatefulWidget {
   final VoidCallback? onThemeChanged;
-
   final Widget body;
   final Widget footer;
 
@@ -19,71 +19,70 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   String selectedCategory = "Cinematic";
-  String? selectedGenre;
+
+  // 🎨 Color constants
+  final Color backgroundColor = const Color(0xFF0E0B16);
+  final Color appBarColor = const Color(0xFF1B152A);
+  final Color primaryText = const Color(0xFFEDE9FF);
+  final Color secondaryText = const Color(0xFFB8B2D8);
+  final Color accentPurple = const Color(0xFF7F5AF0);
 
   void showSearchDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return SearchDialogue();
-      },
-    );
+    showDialog(context: context, builder: (context) => SearchDialogue());
   }
 
-  void searchItems() {}
-
-  void userState() async {
+  void userState() {
     User? firebaseUser = FirebaseAuth.instance.currentUser;
-    //user is logged in
+
     if (firebaseUser == null) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Login(onThemeChanged: widget.onThemeChanged)),
       );
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Usersettingspage(), // User Settings page
-        ),
-      );
+      return;
     }
-  }
 
-  void userCart() {}
+    // Always go to user settings page - it will show appropriate options based on user role
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Usersettingspage()));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
+
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(65),
+        preferredSize: const Size.fromHeight(65),
         child: AppBar(
+          backgroundColor: appBarColor,
+          elevation: 0,
+
           title: Row(
             children: [
+              // Logo / Title
               TextButton(
                 onPressed: () {
                   Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
                 },
                 child: Text(
-                  "Book-Nest",
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Theme.of(context).textTheme.bodyLarge?.color,
-                  ),
+                  "BookNest",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: primaryText),
                 ),
               ),
-              Padding(padding: EdgeInsets.only(left: 40)),
 
+              const SizedBox(width: 40),
+
+              // Category dropdown
               DropdownButton<String>(
                 value: selectedCategory,
-                icon: Icon(Icons.arrow_drop_down),
-                underline: SizedBox(),
-                focusColor: Colors.transparent,
-                style: TextStyle(fontSize: 20, color: Theme.of(context).textTheme.bodyLarge?.color),
+                dropdownColor: appBarColor,
+                icon: Icon(Icons.arrow_drop_down, color: secondaryText),
+                underline: const SizedBox(),
+                style: TextStyle(fontSize: 20, color: primaryText),
                 items:
-                    ["Cinematic", "Best Selling", "New Arrivals"].map((String category) {
-                      return DropdownMenuItem<String>(value: category, child: Text(category));
-                    }).toList(),
+                    ["Cinematic", "Best Selling", "New Arrivals"]
+                        .map((category) => DropdownMenuItem(value: category, child: Text(category)))
+                        .toList(),
                 onChanged: (newValue) {
                   setState(() {
                     selectedCategory = newValue!;
@@ -102,26 +101,30 @@ class _HomepageState extends State<Homepage> {
                   }
                 },
               ),
-              SizedBox(width: 50),
 
+              const SizedBox(width: 50),
+
+              // 🔍 Glassmorphism Search Box
               Flexible(
                 child: GestureDetector(
                   onTap: showSearchDialog,
-                  child: Center(
-                    child: Container(
-                      width: double.infinity,
-                      margin: EdgeInsets.symmetric(vertical: 8),
-                      child: TextField(
-                        onTap: showSearchDialog,
-                        decoration: InputDecoration(
-                          hintText: "What do you want to read?",
-                          prefixIcon: Icon(Icons.search),
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
-                          ),
-                        ),
+                  child: Container(
+                    height: 42,
+                    decoration: BoxDecoration(
+                      color: const Color(0x33FFFFFF), // glass effect
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(color: Colors.white.withOpacity(0.15)),
+                    ),
+                    child: TextField(
+                      onTap: showSearchDialog,
+                      readOnly: true,
+                      style: TextStyle(color: primaryText),
+                      decoration: InputDecoration(
+                        hintText: "What do you want to read?",
+                        hintStyle: TextStyle(color: secondaryText),
+                        prefixIcon: Icon(Icons.search, color: secondaryText),
+                        border: InputBorder.none,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 10),
                       ),
                     ),
                   ),
@@ -129,32 +132,48 @@ class _HomepageState extends State<Homepage> {
               ),
             ],
           ),
-          //for theme
+
+          // Right-side icons
           actions: [
             IconButton(
               onPressed: () => widget.onThemeChanged?.call(),
-              icon: Icon(Icons.brightness_6),
-              padding: EdgeInsets.symmetric(horizontal: 40.0), // Adds horizontal padding
+              icon: Icon(Icons.brightness_6, color: primaryText),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
             ),
-
-            //for user login
             IconButton(
               onPressed: userState,
-              icon: Icon(Icons.person),
-              padding: EdgeInsets.symmetric(horizontal: 40.0), // Adds horizontal padding
+              icon: Icon(Icons.person, color: primaryText),
+              padding: const EdgeInsets.symmetric(horizontal: 32),
             ),
+            // Conditional cart/admin icon based on user role
+            Builder(
+              builder: (context) {
+                final User? currentUser = FirebaseAuth.instance.currentUser;
+                final bool isAdmin = currentUser?.uid == Config.adminUID;
 
-            //for cart
-            IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/usercart');
+                return IconButton(
+                  onPressed: () {
+                    if (isAdmin) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AdminBookUploadPage()),
+                      );
+                    } else {
+                      Navigator.pushNamed(context, '/usercart');
+                    }
+                  },
+                  icon: Icon(
+                    isAdmin ? Icons.admin_panel_settings : Icons.shopping_cart,
+                    color: primaryText,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                );
               },
-              icon: Icon(Icons.shopping_cart),
-              padding: EdgeInsets.symmetric(horizontal: 40.0),
             ),
           ],
         ),
       ),
+
       body: SingleChildScrollView(child: Column(children: [widget.body, widget.footer])),
     );
   }

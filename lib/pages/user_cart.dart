@@ -92,7 +92,22 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text("by ${item["author"]}"),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/author-books',
+                                        arguments: item["author"],
+                                      );
+                                    },
+                                    child: Text(
+                                      "by ${item["author"]}",
+                                      style: TextStyle(
+                                        color: Colors.blue.shade400,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                    ),
+                                  ),
                                   const SizedBox(height: 8),
                                   Row(
                                     children: [

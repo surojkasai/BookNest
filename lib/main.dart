@@ -2,11 +2,14 @@ import 'package:booknest/bookslistsearch/allBooks.dart';
 import 'package:booknest/config.dart';
 import 'package:booknest/db/book.dart';
 import 'package:booknest/pages/aboutus.dart';
+import 'package:booknest/pages/admin.dart' show AdminBookUploadPage;
+import 'package:booknest/pages/author_books_page.dart';
 import 'package:booknest/pages/cinematic.dart';
 import 'package:booknest/pages/homepage.dart';
-import 'package:booknest/pages/best_sellers_page.dart'; // import your new page
+import 'package:booknest/pages/best_sellers_page.dart';
 import 'package:booknest/pages/mainbody.dart';
 import 'package:booknest/pages/new_arrivals_page.dart';
+import 'package:booknest/pages/admin.dart';
 import 'package:booknest/pages/user_cart.dart';
 import 'package:booknest/paymentmethod/esewa_state.dart';
 import 'package:booknest/provider/cart_provider.dart';
@@ -24,7 +27,7 @@ void main() async {
   await Firebase.initializeApp(
     options: FirebaseOptions(
       apiKey: Config.firebaseApiKey,
-      appId: Config.firebaseProjectId,
+      appId: Config.firebaseAppId,
       messagingSenderId: Config.firebaseMessagingSenderId,
       projectId: Config.firebaseProjectId,
     ),
@@ -34,6 +37,16 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(BookAdapter());
   final bookBox = await Hive.openBox<Book>('books');
+  // await bookBox.clear();
+
+  print("Total books in hive: ${bookBox.values.length}");
+  if (bookBox.isEmpty) {
+    final books = await getInitialBooks();
+    await bookBox.addAll(books);
+    print("Seeded ${books.length} books into Hive");
+  } else {
+    print("Books already exist. Skipping seeding.");
+  }
 
   runApp(
     KhaltiScope(
@@ -89,18 +102,23 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/':
-            (context) => Homepage(
-              onThemeChanged: toggleTheme,
-              body: Mainbody(),
-              footer: FooterSection(),
-              //footer: FooterSection(),
-            ),
+            (context) =>
+                Homepage(onThemeChanged: toggleTheme, body: Mainbody(), footer: FooterSection()),
         '/cinematic':
             (context) => cinematicpage(onThemeChanged: toggleTheme, footer: FooterSection()),
         '/bestsellers':
             (context) => bestSellersPage(onThemeChanged: toggleTheme, footer: FooterSection()),
         '/newarrivals':
             (context) => NewArrivalsPage(onThemeChanged: toggleTheme, footer: FooterSection()),
+        '/author-books': (context) {
+          final args = ModalRoute.of(context)?.settings.arguments as String?;
+          return AuthorBooksPage(
+            authorName: args ?? '',
+            onThemeChanged: toggleTheme,
+            footer: FooterSection(),
+          );
+        },
+        '/admin': (context) => AdminBookUploadPage(),
         '/usercart':
             (context) => ShoppingCartPage(
               //onThemeChanged: toggleTheme,

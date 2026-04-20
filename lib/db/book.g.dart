@@ -24,13 +24,14 @@ class BookAdapter extends TypeAdapter<Book> {
       category: fields[4] as String?,
       imageBytes: fields[5] as Uint8List?,
       createdAt: fields[6] as DateTime,
+      genre: fields[7] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Book obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class BookAdapter extends TypeAdapter<Book> {
       ..writeByte(5)
       ..write(obj.imageBytes)
       ..writeByte(6)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+      ..writeByte(7)
+      ..write(obj.genre);
   }
 
   @override

@@ -12,6 +12,10 @@ class Mainbody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 🎨 Theme colors
+    final Color backgroundColor = const Color(0xFF0E0B16);
+    final Color primaryText = const Color(0xFFEDE9FF);
+    final Color secondaryText = const Color(0xFFB8B2D8);
     return SingleChildScrollView(
       //featured genres or only genres
       child: Column(
@@ -22,6 +26,7 @@ class Mainbody extends StatelessWidget {
               //just for testing
               //color: Colors.red,
               height: 300,
+              color: backgroundColor,
               child: Scrollbar(
                 thumbVisibility: true, // Makes scrollbar always visible
                 interactive: true,
@@ -66,13 +71,15 @@ class Mainbody extends StatelessWidget {
           Container(
             //color: Colors.black,
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+            color: backgroundColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Bestselling Authors',
                   style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                    // color: Theme.of(context).textTheme.bodyLarge?.color,
+                    color: primaryText,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -80,7 +87,12 @@ class Mainbody extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   'Discover Books by Bestselling Authors in Our Collection, Ranked by Popularity.',
-                  style: TextStyle(color: Colors.grey[400], fontSize: 14),
+                  style: TextStyle(
+                    color: secondaryText,
+
+                    // Colors.grey[400]
+                    fontSize: 14,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 SingleChildScrollView(

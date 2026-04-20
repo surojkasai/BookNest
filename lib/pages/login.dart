@@ -1,3 +1,4 @@
+import 'package:booknest/config.dart';
 import 'package:booknest/pages/Usersettingspage.dart';
 import 'package:booknest/pages/admin.dart';
 import 'package:booknest/pages/homepage.dart';
@@ -27,9 +28,10 @@ class _LoginState extends State<Login> {
         password: passwordcontroller.text.trim(),
       );
       if (FirebaseAuth.instance.currentUser != null) {
+        final user = FirebaseAuth.instance.currentUser!;
         Navigator.pushNamedAndRemoveUntil(
           context,
-          '/', // Home page route
+          user.uid == Config.adminUID ? '/admin' : '/',
           (route) => false,
         );
       }
@@ -113,11 +115,9 @@ class _LoginState extends State<Login> {
                         borderRadius: BorderRadius.circular(12),
                         child: IconButton(
                           onPressed: () async {
-                            const String adminUid = "5o3m7cmRXcbw9FRxYGgWRPJy4Be2";
-
                             final user = await GoogleAuthService.signIn();
                             if (user != null) {
-                              if (user.uid == adminUid) {
+                              if (user.uid == Config.adminUID) {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(builder: (_) => AdminBookUploadPage()),

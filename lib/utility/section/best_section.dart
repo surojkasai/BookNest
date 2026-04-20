@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart'; // Import for Hive
-import 'package:booknest/db/book.dart'; // Assuming your Book model is here
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:booknest/db/book.dart';
 import 'package:booknest/pages/book_details.dart';
 import 'package:booknest/utility/bookitem_card.dart';
 
@@ -15,13 +15,14 @@ class BestSection extends StatelessWidget {
     double price,
     String author,
     String description,
-    //String category,
+    String genre,
   ) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder:
             (context) => BookDetailsPage(
+              genre: genre,
               title: title,
               imageBytes: imageBytes,
               price: price,
@@ -29,7 +30,6 @@ class BestSection extends StatelessWidget {
               capText: "Find Your Next Great Read Among Our Best SELLING",
               author: author,
               description: description,
-              //category: category,
             ),
       ),
     );
@@ -146,6 +146,7 @@ class BestSection extends StatelessWidget {
                                     book.price,
                                     book.author,
                                     book.description,
+                                    book.genre,
                                     //book.category, // Pass category
                                   );
                                 },

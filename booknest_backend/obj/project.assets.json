@@ -531,11 +531,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SUROJ\\Desktop\\booknest\\booknest_backend\\booknest_backend.csproj",
+      "projectUniqueName": "C:\\Users\\SUROJ\\Desktop\\booknest3.0\\booknest_backend\\booknest_backend.csproj",
       "projectName": "booknest_backend",
-      "projectPath": "C:\\Users\\SUROJ\\Desktop\\booknest\\booknest_backend\\booknest_backend.csproj",
+      "projectPath": "C:\\Users\\SUROJ\\Desktop\\booknest3.0\\booknest_backend\\booknest_backend.csproj",
       "packagesPath": "C:\\Users\\SUROJ\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SUROJ\\Desktop\\booknest\\booknest_backend\\obj\\",
+      "outputPath": "C:\\Users\\SUROJ\\Desktop\\booknest3.0\\booknest_backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SUROJ\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -599,7 +599,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.420/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
